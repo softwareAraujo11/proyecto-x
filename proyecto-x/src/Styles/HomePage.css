@@ -1,0 +1,91 @@
+.principal-div{
+  background-color: black;
+  color: white;
+  display: flex;
+  height: 100vh;
+}
+
+.image-div{
+  width: 850px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logoHome{
+  height: 300px;
+  width: 300px;
+}
+
+.buttoms-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+}
+
+#text1{
+  font-size: 75px;
+  margin-right: 0;
+  font-weight: 700;
+  margin-top: -90px;
+}
+
+#text2{
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.button{
+  width: 300px;
+  height: 45px;border-radius: 50px;
+  text-decoration: none;
+
+}
+
+.or-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.line-or{
+  width: 142px;
+  margin-top: 3px;
+}
+
+#text3{
+  font-size: 11px;
+  width: 300px;
+  margin-top: 10px;
+  color: gray;
+}
+
+.button-register{
+  background-color: #1A8CD8;
+  color: white;
+}
+#button-register{
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.button-login{
+  background-color: black;
+  border: 1px solid #536471;
+  color: #1A8CD8;
+}
+#button-login{
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#text4{
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 40px;
+}
