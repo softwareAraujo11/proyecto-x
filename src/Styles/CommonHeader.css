@@ -1,0 +1,38 @@
+.CommonHeader {
+    display: flex; /* Mantiene el layout flex */
+    justify-content: space-between; /* Espaciado entre elementos */
+    background-color: black; /* Color de fondo */
+    color: aliceblue; /* Color del texto */
+    align-items: center; /* Centra los elementos verticalmente */
+    height: 60px; /* Altura del encabezado */
+    position: fixed; /* Fija el encabezado en la parte superior */
+    top: 0; /* Asegura que esté en la parte superior */
+    left: 0; /* Asegura que esté alineado a la izquierda */
+    right: 0; /* Asegura que esté alineado a la derecha */
+    z-index: 1000; /* Mantiene el encabezado por encima de otros elementos */
+}
+
+
+#logoHeader{
+    height: 35px;
+    width: 35px;
+    margin-left: 20px;
+}
+
+#div1-commonHeader{
+    display: flex;
+    align-items: start;
+}
+
+#div2-commonHeader{
+    padding-top: 10px;
+}
+
+#div3-commonHeader{
+    margin-right: 20px;
+    padding-top: 10px;
+}
+
+#logOut{
+    text-decoration: none;
+}

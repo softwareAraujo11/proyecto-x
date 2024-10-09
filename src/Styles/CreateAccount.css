@@ -57,19 +57,20 @@ border-radius: 50px;
 
 #buttonx{
     text-decoration: none;
+    margin-right: 40px;
 }
 
 #textCreate1{
     text-align: left;
     font-size: 30px;
-    margin-left: 12px;
+    margin-left: 140px;
 }
 
 #buttonNext{
     margin: auto;
     margin-bottom: 20px;
-    background-color: #787A7A;
-    color: #080A0D;
+    background-color: cornflowerblue;
+    color: white;
     font-weight: 700;
     width: 90%;
 }

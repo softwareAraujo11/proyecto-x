@@ -42,7 +42,11 @@
   width: 300px;
   height: 45px;border-radius: 50px;
   text-decoration: none;
+}
 
+#buttonGoogle{
+  background-color: white;
+  color: black;
 }
 
 .or-div{
@@ -64,14 +68,12 @@
   color: gray;
 }
 
-.button-register{
-  background-color: #1A8CD8;
-  color: white;
-}
 #button-register{
   color: white;
   text-decoration: none;
   font-weight: 600;
+  background-color: #1A8CD8;
+  border-radius: 40px;
 }
 
 .button-login{
