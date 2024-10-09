@@ -1,0 +1,32 @@
+.CommonHeader{
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: aliceblue;
+    align-items: center;
+    height: 60px;
+}
+
+#logoHeader{
+    height: 35px;
+    width: 35px;
+    margin-left: 20px;
+}
+
+#div1-commonHeader{
+    display: flex;
+    align-items: start;
+}
+
+#div2-commonHeader{
+    padding-top: 10px;
+}
+
+#div3-commonHeader{
+    margin-right: 20px;
+    padding-top: 10px;
+}
+
+#logOut{
+    text-decoration: none;
+}

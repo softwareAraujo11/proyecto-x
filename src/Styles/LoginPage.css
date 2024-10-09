@@ -24,7 +24,6 @@
 }
 
 .LoginPage-div {
-  background-color: aqua;
   display: flex;
   flex-direction: column;
   width: 600px;
@@ -59,10 +58,8 @@
   text-decoration: none;
 }
 
-#textCreate1 {
-  text-align: left;
-  font-size: 30px;
-  margin-left: 12px;
+#textLogin1 {
+  margin-left: 20px;
 }
 
 #buttonNext {
@@ -75,5 +72,5 @@
 }
 
 #buttonGoogleLogin {
-  margin-left: 140px;
+  margin-left: 150px;
 }

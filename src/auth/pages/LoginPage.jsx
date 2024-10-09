@@ -38,7 +38,7 @@ export const LoginPage = () => {
             </Link>
             <img src={miLogo} alt="logo" id="imgX" />
           </div>
-          <h1 id="textCreate1">Sign in to X</h1>
+          <h1 id="textLogin1">Sign in to X</h1>
           <button className="button" id="buttonGoogleLogin">
             Sign in with Google
           </button>
