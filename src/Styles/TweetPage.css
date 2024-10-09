@@ -1,0 +1,48 @@
+/* TweetPage.css */
+
+.TweetPage{
+    background-color: #f5f8fa;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.heading {
+    color: #242D34;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.textarea {
+    width: 90%;
+    max-width: 500px;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-color: #ddd;
+    border-radius: 5px;
+    resize: none;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.button {
+    background-color: #242D34;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}

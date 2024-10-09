@@ -1,75 +1,76 @@
-.CreateAccount {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #242d34;
-  height: 100vh;
+.CreateAccount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #242D34;
+    height: 100vh;
 }
 
-.logo-div {
-  display: flex;
-  margin-bottom: 20px;
+.logo-div{
+    display: flex;
+    margin-bottom: 20px;
 }
 
-.logo-div p {
-  color: aliceblue;
-  margin-left: -40px;
-  width: 20px;
+.logo-div p{
+    color: aliceblue;
+    margin-left: -40px;
+    width: 20px;
 }
 
-#buttonx :hover {
-  background-color: gray;
-  border-radius: 50px;
+#buttonx :hover{
+background-color: gray;
+border-radius: 50px;
 }
 
-.createAccount-div {
-  background-color: aqua;
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  height: 600px;
-  margin: 200px;
-  background-color: black;
-  color: white;
-  padding: 20px 60px;
-  border-radius: 20px;
+.createAccount-div{
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+    margin: 200px;
+    background-color: black;
+    color: white;
+    padding: 20px 60px;
+    border-radius: 20px;
 }
 
-#imgX {
-  width: 35px;
-  height: 35px;
-  margin-left: 230px;
+#imgX{
+    width: 35px;
+    height: 35px;
+    margin-left: 230px;
 }
-#register-form {
-  display: flex;
-  flex-direction: column;
-}
-
-#register-form input {
-  margin: 20px;
-  background-color: black;
-  height: 50px;
-  border-radius: 5px;
-  color: white;
-  padding-left: 10px;
+#register-form{
+    display: flex;
+    flex-direction: column;
 }
 
-#buttonx {
-  text-decoration: none;
+#register-form input{
+    margin: 20px;
+    background-color: black;
+    height: 50px;
+    border-radius: 5px;
+    color: white;
+    padding-left: 10PX;
 }
 
-#textCreate1 {
-  text-align: left;
-  font-size: 30px;
-  margin-left: 12px;
+#buttonx{
+    text-decoration: none;
+    margin-right: 40px;
 }
 
-#buttonNext {
-  margin: auto;
-  margin-bottom: 20px;
-  background-color: #787a7a;
-  color: #080a0d;
-  font-weight: 700;
-  width: 90%;
+#textCreate1{
+    text-align: left;
+    font-size: 30px;
+    margin-left: 140px;
+}
+
+#buttonNext{
+    margin: auto;
+    margin-bottom: 20px;
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: 700;
+    width: 90%;
 }
