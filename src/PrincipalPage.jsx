@@ -6,6 +6,7 @@ import Feed from "./auth/pages/Feed";
 import TweetPage from './auth/pages/TweetPage';
 import { Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
+import {Profile} from './auth/pages/Profile';
 
 export const PrincipalPage = () => {
   const [tweets, setTweets] = useState([]); // Estado de tweets
@@ -23,6 +24,7 @@ export const PrincipalPage = () => {
           <Route path="LoginPage" element={<LoginPage />} />
           <Route path="Feed" element={<Feed tweets={tweets} />} /> {/* Pasa los tweets aquí */}
           <Route path="/tweet" element={<TweetPage addTweet={addTweet} />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </>

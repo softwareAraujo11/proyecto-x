@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import '../../Styles/TweetPage.css'; // Importa el archivo CSS
+import '../../Styles/TweetPage.css'; 
 
 function TweetPage({ addTweet }) {
     const [tweet, setTweet] = useState('');
@@ -11,16 +11,16 @@ function TweetPage({ addTweet }) {
 
     const handleTweetChange = (event) => {
         setTweet(event.target.value);
-        setError(''); // Resetear el error al cambiar el texto
+        setError('');
     };
 
     const handleTweetSubmit = () => {
         if (tweet.trim()) {
-            addTweet(tweet); // Llama a la función para guardar el tweet
-            setTweet(''); // Resetea el campo de texto
-            navigate('/Feed'); // Redirige de vuelta al feed
+            addTweet(tweet); 
+            setTweet(''); 
+            navigate('/Feed'); 
         } else {
-            setError("Por favor, escribe algo antes de publicar."); // Mensaje de error
+            setError("Por favor, escribe algo antes de publicar."); 
         }
     };
 
@@ -34,7 +34,7 @@ function TweetPage({ addTweet }) {
                 placeholder="¿Qué está pasando?" 
                 className="textarea"
             />
-            {error && <p className="error">{error}</p>} {/* Mensaje de error */}
+            {error && <p className="error">{error}</p>} {}
             <button onClick={handleTweetSubmit} className="button">Publicar</button>
         </div>
         </div>

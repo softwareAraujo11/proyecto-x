@@ -7,12 +7,12 @@ export const TweetsFeed = ({ tweets }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const tweetsPerPage = 10;
 
-    // Calcula el índice del primer y último tweet en la página actual
+   
     const indexOfLastTweet = currentPage * tweetsPerPage;
     const indexOfFirstTweet = indexOfLastTweet - tweetsPerPage;
     const currentTweets = tweets.slice(indexOfFirstTweet, indexOfLastTweet);
 
-    // Cambia de página
+    
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };

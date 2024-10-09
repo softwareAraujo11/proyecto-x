@@ -1,3 +1,5 @@
+/*TweetsFeed.css*/
+
 .TweetsFeed {
     width: 100%;
     display: flex;
@@ -11,9 +13,10 @@
 
 .tweetsContainer {
     width: 100%;
-    max-width: 600px;
+    max-width: 550px;
     display: flex;
-    flex-direction: column; /* Asegúrate de que los tweets se apilen verticalmente */
+    flex-direction: column; 
+margin-left: -37px;
 }
 
 .tweet {
@@ -28,7 +31,7 @@
     transition: transform 0.2s ease-in-out;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
-    /* Evitar que el texto se desborde */
+   
     word-wrap: break-word;
     overflow-wrap: break-word;
 }

@@ -1,0 +1,34 @@
+/* SidebarMenu.css */
+.SidebarMenu {
+    display: flex;
+    flex-direction: column;
+    width: 200px; 
+    background-color: #242D34; 
+    padding: 20px;
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    color: #d2dae2; 
+    text-decoration: none; 
+    margin: 15px 0; 
+    transition: background-color 0.3s;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.menuItem:hover {
+    background-color: #57606f; 
+}
+
+.icon {
+    margin-right: 10px; 
+    font-size: 20px; 
+}
+
+.itemName {
+    font-size: 16px;
+}

@@ -1,3 +1,5 @@
+/*Feed.css*/
+
 .Feed {
     display: flex;
     background-color: #242D34;
@@ -26,7 +28,8 @@
     width: 100%;
     max-width: 600px;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-left: -210px;
 }
 
 .rightFeed {
@@ -38,5 +41,8 @@
 
 #buttonPostTweet{
     background-color: steelblue;
-    
+}
+
+#Welcome{
+    font-size: 50px;
 }

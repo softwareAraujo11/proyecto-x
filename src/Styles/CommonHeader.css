@@ -1,15 +1,15 @@
 .CommonHeader {
-    display: flex; /* Mantiene el layout flex */
-    justify-content: space-between; /* Espaciado entre elementos */
-    background-color: black; /* Color de fondo */
-    color: aliceblue; /* Color del texto */
-    align-items: center; /* Centra los elementos verticalmente */
-    height: 60px; /* Altura del encabezado */
-    position: fixed; /* Fija el encabezado en la parte superior */
-    top: 0; /* Asegura que esté en la parte superior */
-    left: 0; /* Asegura que esté alineado a la izquierda */
-    right: 0; /* Asegura que esté alineado a la derecha */
-    z-index: 1000; /* Mantiene el encabezado por encima de otros elementos */
+    display: flex; 
+    justify-content: space-between; 
+    background-color: black; 
+    color: aliceblue; 
+    align-items: center; 
+    height: 60px; 
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    right: 0;
+    z-index: 1000; 
 }
 
 
