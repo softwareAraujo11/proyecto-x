@@ -1,3 +1,4 @@
+//HomePage.jsx
 import React from "react";
 import miLogo from "../assets/x.png";
 import "../Styles/HomePage.css";
@@ -15,14 +16,14 @@ export const HomePage = () => {
           <div className="buttoms-div">
             <h1 id="text1">Happening now</h1>
             <h2 id="text2">Join today.</h2>
-            <button className="button">Sign in with Google</button>
+            <button className="button" id="buttonGoogle">Sign in with Google</button>
             <div className="or-div">
               <hr className="line-or" />
               <p>or</p>
               <hr className="line-or" />
             </div>
             <Link to="/CreateAccount" id="button-register">
-              <button className="button button-register">Create Account</button>
+              <button className="button button-register" id="button-register">Create Account</button>
             </Link>
             <p id="text3">
               By signing up, you agree to the{" "}

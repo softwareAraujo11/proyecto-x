@@ -1,18 +1,23 @@
-/* TweetsFeed.css */
+/*TweetsFeed.css*/
+
 .TweetsFeed {
-    width: 100%;
+    width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding: 10px; 
     background-color: #1e272e;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-left: -250px;
 }
 
 .tweetsContainer {
     width: 100%;
-    max-width: 600px;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column; 
+margin-left: -37px;
 }
 
 .tweet {
@@ -27,7 +32,7 @@
     transition: transform 0.2s ease-in-out;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
-    /* Evitar que el texto se desborde */
+   
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -42,3 +47,30 @@
     margin-bottom: 0;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.pagination button {
+    background-color: #485460;
+    color: #d2dae2;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #57606f;
+}
+
+.pagination button.active {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+}

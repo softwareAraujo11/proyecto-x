@@ -18,10 +18,10 @@ export const LoginPage = () => {
   const onLogin = (event) => {
     event.preventDefault();
 
-    // Llama a logInUser y verifica si las credenciales son válidas
+    
     const isValidLogin = logInUser(UserName, password);
     if (isValidLogin) {
-      // Si las credenciales son válidas, redirige al la pagina inicio
+      
       navigate("/Feed", { replace: true });
     } else {
       alert("Credenciales incorrectas");
