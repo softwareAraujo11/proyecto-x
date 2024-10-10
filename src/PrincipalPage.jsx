@@ -7,16 +7,15 @@ import TweetPage from './auth/pages/TweetPage';
 import { Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import Profile from './auth/pages/Profile';
-import { FollowersPage } from './auth/pages/FollowersPage';
+import  FollowersPage  from './auth/pages/FollowersPage';
 import { FollowingPage } from './auth/pages/FollowingPage';
 
 export const PrincipalPage = () => {
-  const [tweets, setTweets] = useState([]); // Estado para almacenar los tweets
-  const [users, setUsers] = useState([]); // Estado para almacenar los usuarios
+  const [tweets, setTweets] = useState([]); 
+  const [users, setUsers] = useState([]); 
 
-  // Función para añadir un nuevo tweet
   const addTweet = (newTweet) => {
-    setTweets([newTweet, ...tweets]); // Añadir el nuevo tweet al principio del array
+    setTweets([newTweet, ...tweets]); 
   };
 
   return (

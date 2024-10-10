@@ -1,4 +1,3 @@
-// Profile.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../../Styles/Profile.css';
@@ -9,14 +8,11 @@ import { TweetsFeed } from '../../components/TweetsFeed';
 
 const Profile = ({ tweets, users }) => {
     const { username: paramUsername } = useParams();
-    const [username, setUsername] = useState(paramUsername || '');
+    const [username, setUsername] = useState(paramUsername);
 
     useEffect(() => {
-        const storedUsername = localStorage.getItem('username');
-        if (storedUsername) {
-            setUsername(storedUsername);
-        }
-    }, []);
+        setUsername(paramUsername);
+    }, [paramUsername]);
 
     const followersCount = 150;
     const followingCount = 75;

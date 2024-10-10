@@ -16,8 +16,8 @@ function TweetPage({ addTweet }) {
 
     const handleTweetSubmit = () => {
         if (tweet.trim()) {
-            const username = localStorage.getItem('username'); // Obtener el nombre de usuario
-            addTweet({ username, content: tweet }); // Agregar el tweet con el nombre de usuario
+            const username = localStorage.getItem('username'); 
+            addTweet({ username, content: tweet });
             setTweet(''); 
             navigate('/Feed'); 
         } else {

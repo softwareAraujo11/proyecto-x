@@ -13,7 +13,7 @@ const initForm = {
   password: "",
 };
 
-export const CreateAccount = ({ setUsers }) => { // Recibe setUsers
+export const CreateAccount = ({ setUsers }) => { 
   const navigate = useNavigate();
   const { registerUser } = useContext(AuthContext);
   const { fullName, UserName, email, password, onInputChange } = useForm(initForm);
@@ -22,7 +22,6 @@ export const CreateAccount = ({ setUsers }) => { // Recibe setUsers
   const onRegister = (event) => {
     event.preventDefault();
 
-    // Validación básica del formulario
     if (!fullName || !UserName || !email || !password) {
       setError('Por favor, completa todos los campos.');
       return;
@@ -37,7 +36,6 @@ export const CreateAccount = ({ setUsers }) => { // Recibe setUsers
 
       localStorage.setItem("username", UserName);
       
-      // Actualiza el estado de usuarios en PrincipalPage
       setUsers(existingUsers);
 
       navigate("/LoginPage", { replace: true });
@@ -56,7 +54,7 @@ export const CreateAccount = ({ setUsers }) => { // Recibe setUsers
           <img src={miLogo} alt="logo" id="imgX" />
         </div>
         <h1 id="textCreate1">Create your account</h1>
-        {error && <p className="error-message">{error}</p>} {/* Mensaje de error */}
+        {error && <p className="error-message">{error}</p>} {}
         <form onSubmit={onRegister} id="register-form">
           <input
             type="text"
