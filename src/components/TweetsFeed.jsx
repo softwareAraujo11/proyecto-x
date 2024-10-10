@@ -7,12 +7,10 @@ export const TweetsFeed = ({ tweets }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const tweetsPerPage = 10;
 
-   
     const indexOfLastTweet = currentPage * tweetsPerPage;
     const indexOfFirstTweet = indexOfLastTweet - tweetsPerPage;
     const currentTweets = tweets.slice(indexOfFirstTweet, indexOfLastTweet);
 
-    
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -22,12 +20,10 @@ export const TweetsFeed = ({ tweets }) => {
             <div className="tweetsContainer">
                 {currentTweets.map((tweet, index) => (
                     <div key={index} className="tweet">
-                        {tweet}
+                        <strong>{tweet.username}</strong>: {tweet.content} {/* Mostrar el nombre de usuario */}
                     </div>
                 ))}
             </div>
-            
-            {}
             <div className="pagination">
                 {[1, 2, 3].map((page) => (
                     <button 

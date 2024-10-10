@@ -12,27 +12,27 @@
     z-index: 1000; 
 }
 
-
-#logoHeader{
+#logoHeader {
     height: 35px;
     width: 35px;
     margin-left: 20px;
 }
 
-#div1-commonHeader{
+#div1-commonHeader {
     display: flex;
     align-items: start;
 }
 
-#div2-commonHeader{
+#div2-commonHeader {
     padding-top: 10px;
 }
 
-#div3-commonHeader{
+#div3-commonHeader {
     margin-right: 20px;
     padding-top: 10px;
+    color: crimson;
 }
 
-#logOut{
+#logOut {
     text-decoration: none;
 }

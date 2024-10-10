@@ -1,3 +1,4 @@
+//HomePage.jsx
 import React from "react";
 import miLogo from "../assets/x.png";
 import "../Styles/HomePage.css";

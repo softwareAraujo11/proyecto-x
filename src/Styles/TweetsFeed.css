@@ -1,7 +1,7 @@
 /*TweetsFeed.css*/
 
 .TweetsFeed {
-    width: 100%;
+    width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +9,7 @@
     background-color: #1e272e;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-left: -250px;
 }
 
 .tweetsContainer {

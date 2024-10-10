@@ -16,7 +16,8 @@ function TweetPage({ addTweet }) {
 
     const handleTweetSubmit = () => {
         if (tweet.trim()) {
-            addTweet(tweet); 
+            const username = localStorage.getItem('username'); // Obtener el nombre de usuario
+            addTweet({ username, content: tweet }); // Agregar el tweet con el nombre de usuario
             setTweet(''); 
             navigate('/Feed'); 
         } else {
@@ -26,17 +27,17 @@ function TweetPage({ addTweet }) {
 
     return (
         <div className='TweetPage'>
-        <div className="container">
-            <h2 className="heading">Publicar Tweet</h2>
-            <textarea 
-                value={tweet} 
-                onChange={handleTweetChange} 
-                placeholder="¿Qué está pasando?" 
-                className="textarea"
-            />
-            {error && <p className="error">{error}</p>} {}
-            <button onClick={handleTweetSubmit} className="button">Publicar</button>
-        </div>
+            <div className="container">
+                <h2 className="heading">Publicar Tweet</h2>
+                <textarea 
+                    value={tweet} 
+                    onChange={handleTweetChange} 
+                    placeholder="¿Qué está pasando?" 
+                    className="textarea"
+                />
+                {error && <p className="error">{error}</p>}
+                <button onClick={handleTweetSubmit} className="button">Publicar</button>
+            </div>
         </div>
     );
 }
