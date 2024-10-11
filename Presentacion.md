@@ -1,23 +1,23 @@
-**Nombre de la materia**
-  Electiva 1
-**Nombre del proyecto**
-  Clon x
-**Equipo**
-  CodeCrew
-**Integrantes**
-  Yojhan Arias Correa,
-  Andres Felipe Torres Araujo,
-  Johan David Peñuela, Morales
-**Descripción**
-  Este proyecto consiste en hacer un clon de X para la asignatura de electiva 1,
-  este es el primer milestone, donde se mostrará la IU de la Aplicacion Web
-**Requerimientos**
-  React
-**Instrucciones de compilacion y ejecución**
-1. clonar el repositorio
-2. abrir en visual estudio
-3. abrir la terminal
-4. ingresar el comando "npm install"
-5. ingresar el comando "npm start"
-6. en caso de presentar errores, se deberá a instalar dependencias
-(mirar cual es la dependencia faltante), en caso de no presentar error, ignorar este punto
+# Electiva 1 - Clon X
+
+## Equipo
+**CodeCrew**
+
+### Integrantes
+- Yojhan Arias Correa
+- Andres Felipe Torres Araujo
+- Johan David Peñuela Morales
+
+## Descripción
+Este proyecto consiste en hacer un clon de X para la asignatura de Electiva 1. Este es el primer milestone, donde se mostrará la interfaz de usuario (IU) de la aplicación web.
+
+## Requerimientos
+- React
+
+## Instrucciones de Compilación y Ejecución
+1. Clonar el repositorio.
+2. Abrir en Visual Studio.
+3. Abrir la terminal.
+4. Ingresar el comando: `npm install`
+5. Ingresar el comando: `npm start`
+6. En caso de presentar errores, instalar dependencias faltantes. Si no hay errores, ignora este punto.
