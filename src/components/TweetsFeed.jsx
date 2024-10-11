@@ -1,37 +1,39 @@
-// TweetsFeed.js
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import '../Styles/TweetsFeed.css';
+// TweetsFeed.jsx
+import React, { useState } from 'react'; // Importa React y useState para manejar el estado.
+import PropTypes from 'prop-types'; // Importa PropTypes para validar las propiedades del componente.
+import '../Styles/TweetsFeed.css'; // Importa los estilos específicos para el componente de TweetsFeed.
 
 export const TweetsFeed = ({ tweets }) => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const tweetsPerPage = 10;
+    const [currentPage, setCurrentPage] = useState(1); // Estado para rastrear la página actual.
+    const tweetsPerPage = 10; // Número de tweets a mostrar por página.
 
-    const indexOfLastTweet = currentPage * tweetsPerPage;
-    const indexOfFirstTweet = indexOfLastTweet - tweetsPerPage;
-    const currentTweets = tweets.slice(indexOfFirstTweet, indexOfLastTweet);
+    // Cálculos de índices para la paginación.
+    const indexOfLastTweet = currentPage * tweetsPerPage; // Índice del último tweet en la página actual.
+    const indexOfFirstTweet = indexOfLastTweet - tweetsPerPage; // Índice del primer tweet en la página actual.
+    const currentTweets = tweets.slice(indexOfFirstTweet, indexOfLastTweet); // Tweets a mostrar en la página actual.
 
+    // Maneja el cambio de página.
     const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
+        setCurrentPage(pageNumber); // Actualiza la página actual con el número de página seleccionado.
     };
 
     return (
-        <div className="TweetsFeed">            
+        <div className="TweetsFeed"> {/* Contenedor principal del feed de tweets */}
             <div className="tweetsContainer">
-                {currentTweets.map((tweet, index) => (
-                    <div key={index} className="tweet">
-                        <strong>{tweet.username}</strong>: {tweet.content} {/* Mostrar el nombre de usuario */}
+                {currentTweets.map((tweet, index) => ( // Mapea los tweets actuales para mostrarlos.
+                    <div key={index} className="tweet"> {/* Cada tweet se renderiza en un contenedor */}
+                        <strong>{tweet.username}</strong>: {tweet.content} {/* Muestra el nombre de usuario y el contenido del tweet */}
                     </div>
                 ))}
             </div>
-            <div className="pagination">
-                {[1, 2, 3].map((page) => (
+            <div className="pagination"> {/* Contenedor de paginación */}
+                {[1, 2, 3].map((page) => ( // Mapea las páginas disponibles para crear botones de paginación.
                     <button 
                         key={page} 
-                        onClick={() => handlePageChange(page)} 
-                        className={page === currentPage ? 'active' : ''}
+                        onClick={() => handlePageChange(page)} // Cambia a la página correspondiente al hacer clic.
+                        className={page === currentPage ? 'active' : ''} // Añade clase activa al botón de la página actual.
                     >
-                        {page}
+                        {page} {/* Número de la página */}
                     </button>
                 ))}
             </div>
@@ -39,6 +41,7 @@ export const TweetsFeed = ({ tweets }) => {
     );
 };
 
+// Validación de las propiedades del componente.
 TweetsFeed.propTypes = {
-    tweets: PropTypes.array.isRequired,
+    tweets: PropTypes.array.isRequired, // 'tweets' debe ser un arreglo y es requerido.
 };
