@@ -14,27 +14,24 @@ const initForm = {
 };
 
 // Componente para crear una nueva cuenta de usuario.
-export const CreateAccount = ({ setUsers }) => { 
+export const CreateAccount = ({ setUsers }) => {
   const navigate = useNavigate(); // Hook para navegar a diferentes rutas.
-  const { registerUser } = useContext(AuthContext); // Accede a la función de registro del contexto de autenticación.
-  const { fullName, UserName, email, password, onInputChange } = useForm(initForm); // Desestructura los valores del formulario y la función para manejarlos.
-  const [error, setError] = useState(''); // Estado para manejar mensajes de error.
+  const {
+    authState: { errorMessage },
+    signUpUser,
+  } = useContext(AuthContext);
+  const { fullName, UserName, email, password, onInputChange } =
+    useForm(initForm); // Desestructura los valores del formulario y la función para manejarlos.
+  const [error, setError] = useState(""); // Estado para manejar mensajes de error.
 
   // Función que se ejecuta al enviar el formulario.
-  const onRegister = (event) => {
+  const onRegister = async (event) => {
     event.preventDefault(); // Previene el comportamiento predeterminado del formulario.
 
-    // Verifica que todos los campos estén completos.
-    if (!fullName || !UserName || !email || !password) {
-      setError('Por favor, completa todos los campos.'); // Mensaje de error si falta información.
-      return; // Sale de la función si hay campos vacíos.
-    }
-
     // Intenta registrar al usuario y guarda el resultado en isRegistered.
-    const isRegistered = registerUser(UserName, password);
-    
-    // Si el registro es exitoso.
-    if (isRegistered) {
+    const isValidLogin = await signUpUser(email, password, fullName);
+
+    if (isValidLogin) {
       // Obtiene los usuarios existentes del localStorage o inicializa un array vacío.
       const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
       // Agrega el nuevo usuario al array de usuarios existentes.
@@ -44,15 +41,10 @@ export const CreateAccount = ({ setUsers }) => {
 
       // Guarda el nombre de usuario en localStorage.
       localStorage.setItem("username", UserName);
-      
+
       // Actualiza el estado de usuarios en el componente padre.
       setUsers(existingUsers);
-
-      // Navega a la página de inicio de sesión.
-      navigate("/LoginPage", { replace: true });
-    } else {
-      // Mensaje de error si el registro falla.
-      setError('Error al registrar el usuario. Puede que el usuario ya exista.');
+      navigate("/Feed", { replace: true });
     }
   };
 
@@ -60,14 +52,20 @@ export const CreateAccount = ({ setUsers }) => {
     <div className="CreateAccount">
       <div className="createAccount-div">
         <div className="logo-div">
-          <Link to="/" id="buttonx"> {/* Enlace para volver a la página de inicio */}
+          <Link to="/" id="buttonx">
+            {" "}
+            {/* Enlace para volver a la página de inicio */}
             <p>X</p>
           </Link>
           <img src={miLogo} alt="logo" id="imgX" /> {/* Muestra el logo */}
         </div>
-        <h1 id="textCreate1">Create your account</h1> {/* Título de la página */}
-        {error && <p className="error-message">{error}</p>} {/* Muestra un mensaje de error si existe */}
-        <form onSubmit={onRegister} id="register-form"> {/* Formulario para crear cuenta */}
+        <h1 id="textCreate1">Create your account</h1>{" "}
+        {/* Título de la página */}
+        {error && <p className="error-message">{error}</p>}{" "}
+        {/* Muestra un mensaje de error si existe */}
+        <form onSubmit={onRegister} id="register-form">
+          {" "}
+          {/* Formulario para crear cuenta */}
           <input
             type="text"
             placeholder="Full Name"
@@ -100,7 +98,9 @@ export const CreateAccount = ({ setUsers }) => {
             value={password}
             onChange={onInputChange} // Maneja cambios en el input
           />
-          <button type="submit" className="button" id="buttonNext"> {/* Botón para enviar el formulario */}
+          <button type="submit" className="button" id="buttonNext">
+            {" "}
+            {/* Botón para enviar el formulario */}
             Register
           </button>
         </form>

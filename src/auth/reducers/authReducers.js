@@ -7,14 +7,23 @@ export const authReducers = (state = {}, action = {}) => {
         ...state,
         logged: true,
         user: action.payload,
+        errorMessage: null,
       };
 
     case authTypes.logOut:
       return {
-        ...state,
         logged: false,
         user: {},
+        errorMessage: null,
       };
+
+    case authTypes.error:
+      return {
+        ...state,
+        logged: false,
+        errorMessage: action.payload?.errorMessage,
+      };
+
     default:
       return state;
   }

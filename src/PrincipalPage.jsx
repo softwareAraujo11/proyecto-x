@@ -2,13 +2,13 @@
 import { HomePage } from "./components/HomePage"; // Importa el componente de la página de inicio.
 import { LoginPage } from "./auth/pages/LoginPage"; // Importa el componente de la página de inicio de sesión.
 import { CreateAccount } from "./auth/pages/CreateAccount"; // Importa el componente de la página de creación de cuenta.
-import Feed from "./auth/pages/Feed"; // Importa el componente de la página de feed de tweets.
-import TweetPage from "./auth/pages/TweetPage"; // Importa el componente para publicar un nuevo tweet.
+import Feed from "./social/pages/Feed"; // Importa el componente de la página de feed de tweets.
+import TweetPage from "./social/pages/TweetPage"; // Importa el componente para publicar un nuevo tweet.
 import { Routes, Route } from "react-router-dom"; // Importa componentes para manejar el enrutamiento.
 import React, { useState } from "react"; // Importa React y el hook useState para manejar el estado.
-import Profile from "./auth/pages/Profile"; // Importa el componente de la página de perfil.
-import FollowersPage from "./auth/pages/FollowersPage"; // Importa el componente de la página de seguidores.
-import { FollowingPage } from "./auth/pages/FollowingPage"; // Importa el componente de la página de seguidos.
+import Profile from "./social/pages/Profile"; // Importa el componente de la página de perfil.
+import FollowersPage from "./social/pages/FollowersPage"; // Importa el componente de la página de seguidores.
+import { FollowingPage } from "./social/pages/FollowingPage"; // Importa el componente de la página de seguidos.
 import { PublicRoute } from "./Router/PublicRoute";
 import { PrivateRoute } from "./Router/PrivateRoute";
 

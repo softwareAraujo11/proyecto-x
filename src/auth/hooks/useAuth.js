@@ -1,34 +1,33 @@
+import {
+  authUser,
+  registerUser,
+  authWithGoogle,
+} from "../../firebase/authProviders";
 import { authTypes } from "../types/authTypes";
-export const useAuth = (dispach) => {
-  const registerUser = (UserName, password) => {
-    // Guardar el nuevo usuario en el localStorage
-    const newUser = {
-      uid: new Date().getMilliseconds(),
-      UserName,
-      password,
-    };
-    localStorage.setItem("user", JSON.stringify(newUser));
+export const useAuth = (dispatch) => {
+  const logInUser = async (email, password) => {
+    const { ok, uid, photoURL, displayName, errorMessage } = await authUser(
+      email,
+      password
+    );
 
-    return true;
-  };
-
-  const logInUser = (UserName, password) => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-
-    if (
-      storedUser &&
-      storedUser.UserName === UserName &&
-      storedUser.password === password
-    ) {
-      const action = {
-        type: authTypes.logIn,
-        payload: storedUser,
-      };
-      dispach(action);
-      return true;
+    if (!ok) {
+      dispatch({ type: authTypes.error, payload: { errorMessage } });
+      return false;
     }
 
-    return false;
+    const payload = { uid, email, photoURL, displayName };
+
+    const action = {
+      type: authTypes.logIn,
+      payload,
+    };
+
+    localStorage.setItem("user", JSON.stringify(payload));
+
+    dispatch(action);
+
+    return true;
   };
 
   const logOutUser = () => {
@@ -36,8 +35,60 @@ export const useAuth = (dispach) => {
     const action = {
       type: authTypes.logOut,
     };
-    dispach(action);
+    dispatch(action);
+  };
+  const signUpUser = async (email, password, displayName) => {
+    const { ok, uid, photoURL, errorMessage } = await registerUser(
+      email,
+      password,
+      displayName
+    );
+
+    if (!ok) {
+      dispatch({ type: authTypes.error, payload: { errorMessage } });
+      return false;
+    }
+
+    const payload = { uid, email, photoURL, displayName };
+
+    const action = {
+      type: authTypes.logIn,
+      payload,
+    };
+
+    localStorage.setItem("user", JSON.stringify(payload));
+
+    dispatch(action);
+
+    return true;
+  };
+  const logInWithGoogle = async () => {
+    const { ok, uid, displayName, email, photoURL, errorMessage } =
+      await authWithGoogle();
+
+    if (!ok) {
+      dispatch({ type: authTypes.error, payload: { errorMessage } });
+      return false;
+    }
+
+    const payload = {
+      uid,
+      email,
+      displayName,
+      photoURL,
+    };
+
+    const action = {
+      type: authTypes.logIn,
+      payload,
+    };
+
+    localStorage.setItem("user", JSON.stringify(payload));
+
+    dispatch(action);
+
+    return true;
   };
 
-  return { registerUser, logInUser, logOutUser };
+  return { signUpUser, logInWithGoogle, logInUser, logOutUser };
 };

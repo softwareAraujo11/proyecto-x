@@ -1,4 +1,6 @@
 // CommonHeader.jsx
+import { useContext } from "react";
+import { AuthContext } from "../auth/contexts/AuthContext";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import miLogo from "../assets/x.png";
@@ -10,16 +12,21 @@ export const CommonHeader = () => {
 
   // useEffect se usa para cargar el nombre de usuario desde el localStorage cuando se monta el componente.
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
+    const storedUsername = localStorage.getItem("displayName");
     if (storedUsername) {
       setUsername(storedUsername); // Si hay un nombre de usuario en el localStorage, se actualiza el estado.
     }
   }, []);
+  const {
+    authState: { user, logged },
+    logOutUser,
+  } = useContext(AuthContext);
+  const userr = user.displayName;
 
   // Función que se ejecuta cuando el usuario hace clic en "Log out".
   const handleLogout = () => {
+    navigate("/LoginPage"); // Redirige al usuario a la página principal (o de inicio de sesión).
     localStorage.clear(); // Limpia el localStorage para eliminar la información de inicio de sesión.
-    navigate("/"); // Redirige al usuario a la página principal (o de inicio de sesión).
   };
 
   return (
@@ -31,7 +38,7 @@ export const CommonHeader = () => {
         </Link>
       </div>
       <div id="div2-commonHeader">
-        <p>{username}</p> {/* Muestra el nombre de usuario */}
+        <p>{userr}</p> {/* Muestra el nombre de usuario */}
       </div>
       <div id="div3-commonHeader">
         <p onClick={handleLogout} id="logOut" style={{ cursor: "pointer" }}>
