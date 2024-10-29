@@ -1,10 +1,28 @@
 // HomePage.jsx
 import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../auth/contexts/AuthContext";
 import miLogo from "../assets/x.png"; // Importa el logo de la aplicación desde los assets.
+import { useNavigate, Link } from "react-router-dom"; // Importa funciones de enrutamiento.
+
 import "../Styles/HomePage.css"; // Importa los estilos específicos para esta página.
-import { Link } from "react-router-dom"; // Importa el componente Link para la navegación entre rutas.
 
 export const HomePage = () => {
+  const navigate = useNavigate();
+  const {
+    authState: { errorMessage },
+    logInUser,
+    logInWithGoogle,
+  } = useContext(AuthContext);
+  const onLoginWithGoogle = async (event) => {
+    event.preventDefault();
+
+    const isValidLogin = await logInWithGoogle();
+
+    if (isValidLogin) {
+      navigate("/feed", { replace: true });
+    }
+  };
   return (
     <>
       {/* Contenedor principal de la página */}
@@ -23,7 +41,11 @@ export const HomePage = () => {
             <h2 id="text2">Join today.</h2>{" "}
             {/* Subtítulo animando al usuario a registrarse */}
             {/* Botón para iniciar sesión con Google */}
-            <button className="button" id="buttonGoogle">
+            <button
+              className="button"
+              id="buttonGoogle"
+              onClick={onLoginWithGoogle}
+            >
               Sign in with Google
             </button>
             {/* Separador visual entre opciones */}

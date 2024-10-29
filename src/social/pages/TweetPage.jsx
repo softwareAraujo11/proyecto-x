@@ -1,4 +1,6 @@
 // TweetPage.jsx
+import { useContext } from "react";
+import { AuthContext } from "../../auth/contexts/AuthContext";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -14,13 +16,17 @@ function TweetPage({ addTweet }) {
     setTweet(event.target.value);
     setError("");
   };
+  const {
+    authState: { user, logged },
+    logOutUser,
+  } = useContext(AuthContext);
+  const userr = user.displayName;
 
   // Maneja el envío del tweet.
   const handleTweetSubmit = () => {
     if (tweet.trim()) {
       // Verifica que el tweet no esté vacío.
-      const username = localStorage.getItem("username"); // Obtiene el nombre de usuario almacenado.
-      addTweet({ username, content: tweet }); // Agrega el tweet usando `addTweet`.
+      addTweet({ userr, content: tweet }); // Agrega el tweet usando `addTweet`.
       setTweet(""); // Limpia el campo de texto.
       navigate("/Feed"); // Redirige al usuario al Feed.
     } else {
