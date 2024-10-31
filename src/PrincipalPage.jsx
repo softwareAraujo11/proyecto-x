@@ -3,14 +3,16 @@ import { HomePage } from "./components/HomePage"; // Importa el componente de la
 import { LoginPage } from "./auth/pages/LoginPage"; // Importa el componente de la página de inicio de sesión.
 import { CreateAccount } from "./auth/pages/CreateAccount"; // Importa el componente de la página de creación de cuenta.
 import Feed from "./social/pages/Feed"; // Importa el componente de la página de feed de tweets.
-import TweetPage from "./social/pages/TweetPage"; // Importa el componente para publicar un nuevo tweet.
-import { Routes, Route } from "react-router-dom"; // Importa componentes para manejar el enrutamiento.
+import { TweetPage } from "./social/pages/TweetPage";
+import { Routes, Route, Navigate } from "react-router-dom"; // Importa componentes para manejar el enrutamiento.
 import React, { useState } from "react"; // Importa React y el hook useState para manejar el estado.
 import Profile from "./social/pages/Profile"; // Importa el componente de la página de perfil.
 import FollowersPage from "./social/pages/FollowersPage"; // Importa el componente de la página de seguidores.
 import { FollowingPage } from "./social/pages/FollowingPage"; // Importa el componente de la página de seguidos.
 import { PublicRoute } from "./Router/PublicRoute";
 import { PrivateRoute } from "./Router/PrivateRoute";
+import { TwittsProvider } from "./social/contexts/TwittsProvider";
+import { SocialRoutes } from "./social/routes/SocialRoutes";
 
 // Componente principal que maneja las rutas de la aplicación.
 export const PrincipalPage = () => {
@@ -59,14 +61,7 @@ export const PrincipalPage = () => {
           }
         />{" "}
         {/* Ruta para la página de feed */}
-        <Route
-          path="/tweet"
-          element={
-            <PrivateRoute>
-              <TweetPage addTweet={addTweet} />
-            </PrivateRoute>
-          }
-        />{" "}
+        <Route path="/*" element={<SocialRoutes />} />
         {/* Ruta para la página de publicar tweet */}
         <Route
           path="/profile/:username"
