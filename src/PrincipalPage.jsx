@@ -54,15 +54,6 @@ export const PrincipalPage = () => {
         {/* Ruta para la página de feed */}
         <Route path="/*" element={<SocialRoutes />} />
         {/* Ruta para la página de publicar tweet */}
-        <Route
-          path="/profile/:username"
-          element={
-            <PrivateRoute>
-              {" "}
-              <Profile tweets={tweets} users={users} />
-            </PrivateRoute>
-          }
-        />{" "}
         {/* Ruta para la página de perfil */}
         <Route
           path="/followers"

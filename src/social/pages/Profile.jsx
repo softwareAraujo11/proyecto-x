@@ -1,13 +1,30 @@
 // Profile.jsx
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"; // useParams para obtener el nombre de usuario de la URL.
 import "../../Styles/Profile.css"; // Importa los estilos específicos del perfil.
 import imgProfile from "../../assets/fotoPerfil.jpg"; // Imagen de perfil predeterminada.
 import { CommonHeader } from "../../components/CommonHeader"; // Componente de encabezado común.
 import SidebarMenu from "../../components/SidebarMenu"; // Menú lateral.
 import { TweetsFeed } from "../../components/TweetsFeed"; // Componente para mostrar tweets.
+import { TwittsContext } from "../contexts/TwittsContext";
 
 const Profile = ({ tweets, users }) => {
+  const {
+    twittState: { twitts, errorMessage },
+    loadTwitts,
+  } = useContext(TwittsContext);
+
+  useEffect(() => {
+    loadTwitts();
+  }, [loadTwitts]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const tweetsPerPage = 10;
+  const startIndex = (currentPage - 1) * tweetsPerPage;
+  const endIndex = startIndex + tweetsPerPage;
+  const currentTweets = Array.isArray(twitts)
+    ? twitts.slice(startIndex, endIndex)
+    : [];
+
   const { username: paramUsername } = useParams(); // Extrae el nombre de usuario de los parámetros de la URL.
   const [username, setUsername] = useState(paramUsername); // Estado para almacenar el nombre de usuario del perfil.
 
@@ -49,11 +66,19 @@ const Profile = ({ tweets, users }) => {
                 Seguidos: {followingCount} {/* Cantidad de seguidos */}
               </Link>
             </div>
+
+            {}
             {/* Si el usuario no tiene tweets, muestra un mensaje; de lo contrario, muestra los tweets */}
-            {userTweets.length === 0 ? (
-              <p>No tweets to show.</p>
+            {currentTweets.length > 0 ? (
+              currentTweets.map((tweet) => (
+                <div key={tweet.id} className="tweet-card">
+                  <h5 className="card-title">{tweet.name}</h5>
+                  <h4 className="tweet-content">{tweet.twitt}</h4>
+                  <p className="card-text">Fecha: {tweet.date}</p>
+                </div>
+              ))
             ) : (
-              <TweetsFeed tweets={userTweets} />
+              <p>No hay tweets disponibles.</p>
             )}
           </div>
         </div>
