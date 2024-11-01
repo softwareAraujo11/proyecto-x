@@ -1,70 +1,70 @@
-// FollowingPage.jsx
-import React, { useState } from 'react'; // Importa React y useState para gestionar el estado.
-import { Link } from 'react-router-dom'; // Importa Link para navegar a los perfiles de usuario.
-import '../../Styles/FollowingPage.css'; // Importa los estilos específicos de esta página.
-import { CommonHeader } from '../../components/CommonHeader'; // Importa un encabezado común para la aplicación.
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "../../Styles/FollowingPage.css";
+import { CommonHeader } from "../../components/CommonHeader";
+import axios from "axios";
 
-// Componente principal para mostrar la lista de usuarios seguidos.
 export const FollowingPage = () => {
-  // Lista inicial de usuarios seguidos, con su nombre completo, nombre de usuario y estado de seguimiento.
-  const following = [
-    { fullName: 'Ana Gómez', UserName: 'ana', isFollowing: false },
-    { fullName: 'Carlos Pérez', UserName: 'carlos', isFollowing: true },
-    { fullName: 'Beatriz López', UserName: 'beatriz', isFollowing: false },
-    { fullName: 'Daniel Ruiz', UserName: 'daniel', isFollowing: true },
-    { fullName: 'Elena Martínez', UserName: 'elena', isFollowing: false },
-    { fullName: 'Fernando Álvarez', UserName: 'fernando', isFollowing: true },
-    { fullName: 'Gabriela Sánchez', UserName: 'gabriela', isFollowing: false },
-    { fullName: 'Hugo Torres', UserName: 'hugo', isFollowing: true },
-    { fullName: 'Isabel Moreno', UserName: 'isabel', isFollowing: false },
-    { fullName: 'Javier Romero', UserName: 'javier', isFollowing: true },
-    { fullName: 'Karla Díaz', UserName: 'karla', isFollowing: false },
-    { fullName: 'Luis Herrera', UserName: 'luis', isFollowing: true },
-    { fullName: 'María Fernández', UserName: 'maria', isFollowing: false },
-    { fullName: 'Natalia Castro', UserName: 'natalia', isFollowing: false },
-    { fullName: 'Oscar Ramírez', UserName: 'oscar', isFollowing: true },
-    { fullName: 'Paola Reyes', UserName: 'paola', isFollowing: false },
-    { fullName: 'Ricardo Ortiz', UserName: 'ricardo', isFollowing: true },
-    { fullName: 'Sandra Lara', UserName: 'sandra', isFollowing: false },
-    { fullName: 'Tomás Gutiérrez', UserName: 'tomas', isFollowing: true },
-    { fullName: 'Valeria Vega', UserName: 'valeria', isFollowing: false },
-  ];
+  const [following, setFollowing] = useState([]);
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 10; // Define cuántos elementos mostrar por página.
-  const totalPages = Math.ceil(following.length / itemsPerPage); // Calcula el número total de páginas.
-  const [currentPage, setCurrentPage] = useState(1); // Estado para la página actual.
+  const fetchRandomUsers = async () => {
+    try {
+      const response = await axios.get("https://randomuser.me/api/?results=30");
+      const users = response.data.results.map((user, index) => ({
+        fullName: `${user.name.first} ${user.name.last}`,
+        UserName: user.login.username,
+        profilePicture: `https://picsum.photos/40/40?random=${index}`,
+      }));
+      setFollowing(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
 
-  // Calcula los usuarios seguidos que se deben mostrar en la página actual.
+  useEffect(() => {
+    fetchRandomUsers();
+  }, []);
+
+  const totalPages = Math.ceil(following.length / itemsPerPage);
   const currentFollowing = following.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  // Función para cambiar la página actual.
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
   return (
-    <div className="following-page"> {/* Contenedor principal de la página de seguidos */}
-      <CommonHeader /> {/* Encabezado común */}
-      <h1>Following</h1> {/* Título de la página */}
-      <ul className="following-list"> {/* Lista de usuarios seguidos */}
+    <div className="following-page">
+      <CommonHeader />
+      <h1>Following</h1>
+      <ul className="followers-list">
         {currentFollowing.map((user, index) => (
-          <li key={index} className="following-item"> {/* Elemento de lista para cada usuario */}
-            <Link to={`/profile/${user.UserName}`} className="following-link"> {/* Enlace al perfil del usuario */}
-              {user.fullName}
-            </Link>
+          <li key={index} className="follower-item">
+            <img
+              src={user.profilePicture}
+              alt={user.fullName}
+              className="profile-picture"
+            />
+            <div>
+              <Link to={`/profile/${user.UserName}`} className="follower-name">
+                {user.fullName}
+              </Link>
+              <p></p>
+              <span className="username">@{user.UserName}</span>
+            </div>
           </li>
         ))}
       </ul>
-
-      <div className="pagination"> {/* Controles de paginación */}
+      <div className="pagination">
         {Array.from({ length: totalPages }, (_, i) => (
           <button
             key={i + 1}
-            className={`page-button ${i + 1 === currentPage ? 'active' : ''}`} // Clase activa para la página actual.
-            onClick={() => handlePageChange(i + 1)} // Cambia a la página seleccionada.
+            className={`page-button ${i + 1 === currentPage ? "active" : ""}`}
+            onClick={() => handlePageChange(i + 1)}
           >
             {i + 1}
           </button>
@@ -73,6 +73,3 @@ export const FollowingPage = () => {
     </div>
   );
 };
-
-export default FollowingPage; // Exporta el componente para que pueda ser utilizado en otras partes de la aplicación.
-
