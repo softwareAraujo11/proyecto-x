@@ -44,7 +44,7 @@ export const CreateAccount = ({ setUsers }) => {
 
       // Actualiza el estado de usuarios en el componente padre.
       setUsers(existingUsers);
-      navigate("/Feed", { replace: true });
+      navigate("/feed", { replace: true });
     }
   };
 

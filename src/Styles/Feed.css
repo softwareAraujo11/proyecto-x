@@ -1,44 +1,44 @@
 /*Feed.css*/
 
 .Feed {
-    display: flex;
-    background-color: #242D34;
-    color: #fff;
-    justify-content: space-between;
-    min-height: 100vh;
-    overflow: auto;
-    margin: 0px;
+  display: flex;
+  background-color: #242d34;
+  color: #fff;
+  justify-content: space-between;
+  min-height: 100vh;
+  overflow: auto;
+  margin: 0px;
 }
 
 #buttonPostTweet {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .izqFeed {
-    margin-left: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .centerFeed {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  margin-top: 40px;
 }
 
-#buttonPostTweet{
-    background-color: steelblue;
+#buttonPostTweet {
+  background-color: steelblue;
 }
 
-#Welcome{
-    font-size: 50px;
-    margin-left: -200px;
+#Welcome {
+  font-size: 50px;
+  margin-left: -200px;
 }
-.buttonAndTweets{
-    margin-left: -200px;
+.buttonAndTweets {
+  margin-left: -200px;
 }

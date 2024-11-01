@@ -1,4 +1,10 @@
-import { collection, doc, setDoc } from "firebase/firestore/lite";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import { socialType } from "../types/socialTypes";
 
@@ -20,5 +26,26 @@ export const useTwitt = (loggedUser, dispatch) => {
       dispatch({ type: socialType.error, payload: error.message });
     }
   };
-  return { saveTwit };
+
+  const loadTwitts = async () => {
+    const collectionRef = collection(
+      FirebaseDB,
+      `${loggedUser.uid}/post-app/post`
+    );
+    const fbDocs = await getDocs(collectionRef);
+
+    const tweets = [];
+    fbDocs.forEach((doc) => {
+      tweets.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    const action = {
+      type: socialType.loadTwitts,
+      payload: tweets,
+    };
+    dispatch(action);
+  };
+  return { saveTwit, loadTwitts };
 };

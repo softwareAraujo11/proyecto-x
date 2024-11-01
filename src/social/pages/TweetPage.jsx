@@ -4,15 +4,18 @@ import { useContext } from "react";
 import { TwittsContext } from "../contexts/TwittsContext";
 import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../../auth/contexts/AuthContext";
+import "../../Styles/TweetPage.css"; // Importa los estilos específicos de la página de tweet.
+import { useNavigate } from "react-router-dom"; // Usa useNavigate en lugar de Navigate
 
 const newEmptyTwitt = {
   userr: "",
   twitt: "",
   date: new Date().toLocaleDateString(), // Agrega la fecha actual
 };
-//import "../../Styles/TweetPage.css"; // Importa los estilos específicos de la página de tweet.
 
 export const TweetPage = () => {
+  const navigate = useNavigate();
+
   const {
     authState: { user, logged },
     logOutUser,
@@ -30,6 +33,7 @@ export const TweetPage = () => {
       date,
     };
     await saveTwit(tweet);
+    navigate("/feed", { replace: true });
   };
 
   // Maneja el envío del tweet.

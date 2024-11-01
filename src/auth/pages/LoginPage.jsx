@@ -14,9 +14,18 @@ const initForm = {
 
 export const LoginPage = () => {
   const navigate = useNavigate(); // Hook para navegar a otras rutas después de iniciar sesión.
-  const { logInUser } = useContext(AuthContext); // Extrae la función logInUser del contexto de autenticación.
+  const { logInUser, logInWithGoogle } = useContext(AuthContext); // Extrae la función logInUser del contexto de autenticación.
   const { email, password, onInputChange } = useForm(initForm); // Extrae los valores y la función onInputChange del hook de formulario.
 
+  const onLoginWithGoogle = async (event) => {
+    event.preventDefault();
+
+    const isValidLogin = await logInWithGoogle();
+
+    if (isValidLogin) {
+      navigate("/feed", { replace: true });
+    }
+  };
   // Función que maneja el envío del formulario de login.
   const onLogin = async (event) => {
     event.preventDefault(); // Previene el comportamiento por defecto del formulario.
@@ -40,7 +49,11 @@ export const LoginPage = () => {
             <img src={miLogo} alt="logo" id="imgX" /> {/* Imagen del logo */}
           </div>
           <h1 id="textLogin1">Sign in to X</h1> {/* Título de la página */}
-          <button className="button" id="buttonGoogleLogin">
+          <button
+            className="button"
+            id="buttonGoogleLogin"
+            onClick={onLoginWithGoogle}
+          >
             {" "}
             {/* Botón para login con Google */}
             Sign in with Google
