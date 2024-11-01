@@ -1,69 +1,66 @@
-// TweetsFeed.jsx
-import { useContext } from "react";
-import { AuthContext } from "../auth/contexts/AuthContext";
-import React, { useState } from "react"; // Importa React y useState para manejar el estado.
-import PropTypes from "prop-types"; // Importa PropTypes para validar las propiedades del componente.
+import { useContext, useEffect, useState } from "react";
+import { TwittsContext } from "../social/contexts/TwittsContext";
 import "../Styles/TweetsFeed.css"; // Importa los estilos específicos para el componente de TweetsFeed.
 
-export const TweetsFeed = ({ tweets }) => {
-  const [currentPage, setCurrentPage] = useState(1); // Estado para rastrear la página actual.
-  const tweetsPerPage = 10; // Número de tweets a mostrar por página.
-
-  // Cálculos de índices para la paginación.
-  const indexOfLastTweet = currentPage * tweetsPerPage; // Índice del último tweet en la página actual.
-  const indexOfFirstTweet = indexOfLastTweet - tweetsPerPage; // Índice del primer tweet en la página actual.
-  const currentTweets = tweets.slice(indexOfFirstTweet, indexOfLastTweet); // Tweets a mostrar en la página actual.
-
-  // Maneja el cambio de página.
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber); // Actualiza la página actual con el número de página seleccionado.
-  };
+export const TweetsFeed = () => {
   const {
-    authState: { user, logged },
-    logOutUser,
-  } = useContext(AuthContext);
-  const userr = user.displayName;
+    twittState: { twitts, errorMessage },
+    loadTwitts,
+  } = useContext(TwittsContext);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const tweetsPerPage = 10;
+
+  useEffect(() => {
+    loadTwitts();
+  }, [loadTwitts]);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const startIndex = (currentPage - 1) * tweetsPerPage;
+  const endIndex = startIndex + tweetsPerPage;
+  const currentTweets = Array.isArray(twitts)
+    ? twitts.slice(startIndex, endIndex)
+    : [];
+
   return (
-    <div className="TweetsFeed">
-      {" "}
-      {/* Contenedor principal del feed de tweets */}
-      <div className="tweetsContainer">
-        {currentTweets.map(
-          (
-            tweet,
-            index // Mapea los tweets actuales para mostrarlos.
-          ) => (
-            <div key={index} className="tweet">
-              {" "}
-              {/* Cada tweet se renderiza en un contenedor */}
-              <strong>{tweet.userr}</strong>: {tweet.content}{" "}
-              {/* Muestra el nombre de usuario y el contenido del tweet */}
+    <div className="container mt-4">
+      <h1 className="text-center mb-4">Tweets</h1>
+      <div className="row">
+        {currentTweets.length > 0 ? (
+          currentTweets.map((tweet) => (
+            <div key={tweet.id} className="tweet-card">
+              <h5 className="card-title">{tweet.name}</h5>
+              <h4 className="tweet-content">{tweet.twitt}</h4>
+              <p className="card-text">Fecha: {tweet.date}</p>
             </div>
-          )
+          ))
+        ) : (
+          <p>No hay tweets disponibles.</p>
         )}
       </div>
       <div className="pagination">
-        {" "}
-        {/* Contenedor de paginación */}
-        {[1, 2, 3].map(
-          (
-            page // Mapea las páginas disponibles para crear botones de paginación.
-          ) => (
-            <button
-              key={page}
-              onClick={() => handlePageChange(page)} // Cambia a la página correspondiente al hacer clic.
-              className={page === currentPage ? "active" : ""} // Añade clase activa al botón de la página actual.
-            >
-              {page} {/* Número de la página */}
-            </button>
-          )
-        )}
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="btn btn-primary m-2"
+        >
+          Anterior
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={endIndex >= twitts.length}
+          className="btn btn-primary m-2"
+        >
+          Siguiente
+        </button>
       </div>
     </div>
   );
-};
-
-// Validación de las propiedades del componente.
-TweetsFeed.propTypes = {
-  tweets: PropTypes.array.isRequired, // 'tweets' debe ser un arreglo y es requerido.
 };

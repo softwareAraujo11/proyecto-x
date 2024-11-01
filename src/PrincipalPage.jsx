@@ -51,15 +51,6 @@ export const PrincipalPage = () => {
           }
         />{" "}
         {/* Ruta para iniciar sesión */}
-        <Route
-          path="Feed"
-          element={
-            <PrivateRoute>
-              {" "}
-              <Feed tweets={tweets} />
-            </PrivateRoute>
-          }
-        />{" "}
         {/* Ruta para la página de feed */}
         <Route path="/*" element={<SocialRoutes />} />
         {/* Ruta para la página de publicar tweet */}
