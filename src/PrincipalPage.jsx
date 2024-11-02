@@ -52,7 +52,7 @@ export const PrincipalPage = () => {
         />{" "}
         {/* Ruta para iniciar sesión */}
         {/* Ruta para la página de feed */}
-        <Route path="/*" element={<SocialRoutes />} />
+        <Route path="/*" element={<PrivateRoute><SocialRoutes /></PrivateRoute>} />
         {/* Ruta para la página de publicar tweet */}
         {/* Ruta para la página de perfil */}
         <Route

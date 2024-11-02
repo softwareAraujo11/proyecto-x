@@ -9,7 +9,7 @@
 - Johan David Peñuela Morales
 
 ## Descripción
-Este proyecto consiste en hacer un clon de X para la asignatura de Electiva 1. Este es el primer milestone, donde se mostrará la interfaz de usuario (IU) de la aplicación web.
+Este proyecto consiste en hacer un clon de X para la asignatura de Electiva 1. Este es el segundo milestone, donde se mostrará la interfaz de usuario (IU) de la aplicación web.
 
 ## Requerimientos
 - React

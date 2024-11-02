@@ -30,8 +30,10 @@ function Feed() {
             >
               Post a Tweet
             </button>
-            {/* Muestra el componente de TweetsFeed inmediatamente */}
-            <TweetsFeed />
+            <div className="tweets-container">
+              {/* Muestra el componente de TweetsFeed */}
+              <TweetsFeed />
+            </div>
           </div>
         </div>
       </div>

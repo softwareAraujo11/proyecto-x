@@ -1,44 +1,65 @@
-/*Feed.css*/
+/* Feed.css */
 
+/* Estilo general del contenedor principal del feed */
 .Feed {
-  display: flex;
-  background-color: #242d34;
-  color: #fff;
-  justify-content: space-between;
-  min-height: 100vh;
-  overflow: auto;
-  margin: 0px;
+  display: flex; /* Utiliza flexbox para disposición */
+  background-color: #f0f2f5; /* Color de fondo claro */
+  min-height: 100vh; /* Asegura que ocupe al menos la altura de la pantalla */
+  background-color: #242D34;
 }
 
-#buttonPostTweet {
-  margin-bottom: 10px;
-}
-
+/* Estilo para la barra lateral */
 .izqFeed {
-  margin-left: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 250px; /* Ancho fijo para la barra lateral */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  padding: 100px 20px; /* Espaciado interno */
 }
 
+/* Estilo para el contenedor central */
 .centerFeed {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  width: 100%;
-  max-width: 600px;
-  padding: 20px;
-  margin-top: 40px;
+  flex-grow: 1; /* Ocupa el resto del espacio disponible */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor central */
+  border-radius: 8px; /* Bordes redondeados */
+  margin-left: 20px; /* Espacio entre la barra lateral y el centro */
 }
 
-#buttonPostTweet {
-  background-color: steelblue;
-}
-
+/* Estilo del encabezado de bienvenida */
 #Welcome {
-  font-size: 50px;
-  margin-left: -200px;
+  font-size: 2rem; /* Tamaño de fuente */
+  color: #1d9bf0; /* Color de texto azul */
+  margin-bottom: 20px; /* Espacio debajo del encabezado */
+  text-align: center; /* Centra el texto */
 }
+
+/* Estilo para el contenedor de botón y tweets */
 .buttonAndTweets {
-  margin-left: -200px;
+  display: flex;
+  flex-direction: column; /* Coloca los elementos en columnas */
+  align-items: center; /* Centra los elementos */
+}
+
+/* Estilo del botón para publicar un tweet */
+.button {
+  background-color: #1d9bf0; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 1rem; /* Tamaño de fuente */
+  cursor: pointer; /* Cambia el cursor a mano */
+  transition: background-color 0.3s; /* Transición suave para el hover */
+  margin-bottom: 20px; /* Espacio inferior */
+}
+
+/* Efecto hover para el botón */
+.button:hover {
+  background-color: #0a7bbd; /* Color más oscuro en hover */
+}
+
+/* Estilo para el contenedor de tweets */
+.tweets-container {
+  width: 100%; /* Ancho completo */
+  max-width: 800px; /* Ancho máximo */
+  margin: 0 auto; /* Centra el contenedor de tweets */
 }
