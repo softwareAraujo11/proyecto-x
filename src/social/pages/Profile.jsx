@@ -66,7 +66,6 @@ const Profile = ({ tweets, users }) => {
                 Seguidos: {followingCount} {/* Cantidad de seguidos */}
               </Link>
             </div>
-
             {}
             {/* Si el usuario no tiene tweets, muestra un mensaje; de lo contrario, muestra los tweets */}
             {currentTweets.length > 0 ? (

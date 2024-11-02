@@ -40,7 +40,7 @@ export const TweetPage = () => {
 
   return (
     <div className="TweetPage">
-      <div className="container">
+      <div className="container1">
         <h2 className="heading">Publicar Tweet </h2>
         <textarea
           type="text"

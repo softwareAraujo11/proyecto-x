@@ -37,7 +37,7 @@ export const TweetsFeed = () => {
           currentTweets.map((tweet) => (
             <div key={tweet.id} className="tweet-card">
               <h5 className="card-title">{tweet.name}</h5>
-              <h4 className="tweet-content">{tweet.twitt}</h4>
+              <div className="tweet-content">{tweet.twitt}</div>
               <p className="card-text">Fecha: {tweet.date}</p>
             </div>
           ))
