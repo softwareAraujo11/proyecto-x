@@ -20,10 +20,15 @@ export const TwittsProvider = ({ children }) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const { saveTwit, loadTwitts } = useTwitt(user, dispatch);
+  const { saveTwit, loadTwitts, loadUserTwitts, loadUsers } = useTwitt(
+    user,
+    dispatch
+  );
 
   return (
-    <TwittsContext.Provider value={{ twittState, saveTwit, loadTwitts }}>
+    <TwittsContext.Provider
+      value={{ twittState, saveTwit, loadTwitts, loadUserTwitts, loadUsers }}
+    >
       {children}
     </TwittsContext.Provider>
   );

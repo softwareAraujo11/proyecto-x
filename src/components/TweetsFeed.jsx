@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { TwittsContext } from "../social/contexts/TwittsContext";
-import "../Styles/TweetsFeed.css"; // Importa los estilos específicos para el componente de TweetsFeed.
+import "../Styles/TweetsFeed.css";
 
 export const TweetsFeed = () => {
   const {

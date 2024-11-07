@@ -1,22 +1,21 @@
-// Profile.jsx
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom"; // useParams para obtener el nombre de usuario de la URL.
-import "../../Styles/Profile.css"; // Importa los estilos específicos del perfil.
-import imgProfile from "../../assets/fotoPerfil.jpg"; // Imagen de perfil predeterminada.
-import { CommonHeader } from "../../components/CommonHeader"; // Componente de encabezado común.
-import SidebarMenu from "../../components/SidebarMenu"; // Menú lateral.
-import { TweetsFeed } from "../../components/TweetsFeed"; // Componente para mostrar tweets.
+import { Link, useParams } from "react-router-dom";
+import "../../Styles/Profile.css";
+import imgProfile from "../../assets/fotoPerfil.jpg";
+import { CommonHeader } from "../../components/CommonHeader";
+import SidebarMenu from "../../components/SidebarMenu";
 import { TwittsContext } from "../contexts/TwittsContext";
 
-const Profile = ({ tweets, users }) => {
+const Profile = () => {
   const {
     twittState: { twitts, errorMessage },
-    loadTwitts,
+    loadUserTwitts,
   } = useContext(TwittsContext);
 
   useEffect(() => {
-    loadTwitts();
-  }, [loadTwitts]);
+    loadUserTwitts(); // Llama a loadUserTwitts para obtener solo los tweets del usuario
+  }, [loadUserTwitts]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const tweetsPerPage = 10;
   const startIndex = (currentPage - 1) * tweetsPerPage;
@@ -25,49 +24,41 @@ const Profile = ({ tweets, users }) => {
     ? twitts.slice(startIndex, endIndex)
     : [];
 
-  const { username: paramUsername } = useParams(); // Extrae el nombre de usuario de los parámetros de la URL.
-  const [username, setUsername] = useState(paramUsername); // Estado para almacenar el nombre de usuario del perfil.
+  const { username: paramUsername } = useParams();
+  const [username, setUsername] = useState(paramUsername);
 
   useEffect(() => {
-    setUsername(paramUsername); // Actualiza el estado de username si cambia el parámetro de la URL.
+    setUsername(paramUsername);
   }, [paramUsername]);
 
-  const followersCount = 150; // Cantidad de seguidores (estática en este caso).
-  const followingCount = 75; // Cantidad de seguidos (estática en este caso).
-
-  // Filtra los tweets que corresponden al usuario actual del perfil.
-  const userTweets = tweets.filter((tweet) => tweet.username === username);
+  const followersCount = 150;
+  const followingCount = 75;
 
   return (
     <div className="Profile">
-      <CommonHeader /> {/* Encabezado común de la página */}
+      <CommonHeader />
       <div className="Feed">
         <div className="izqFeed">
-          <SidebarMenu /> {/* Menú lateral izquierdo */}
+          <SidebarMenu />
         </div>
-        <div className="centerFeed" id="">
+        <div className="centerFeed">
           <div className="profile-container">
             <div className="profile-header">
               <img
-                src={imgProfile} // Muestra una imagen de perfil estática.
+                src={imgProfile}
                 alt="fotoPerfil"
                 className="profile-picture"
               />
-              <h2 className="username">{username}</h2>{" "}
-              {/* Muestra el nombre de usuario del perfil */}
+              <h2 className="username">{username}</h2>
             </div>
             <div className="buttons-container">
-              {" "}
-              {/* Botones para mostrar seguidores y seguidos */}
               <Link to={`/followers`} className="profile-button">
-                Seguidores: {followersCount} {/* Cantidad de seguidores */}
+                Seguidores: {followersCount}
               </Link>
               <Link to={`/following`} className="profile-button">
-                Seguidos: {followingCount} {/* Cantidad de seguidos */}
+                Seguidos: {followingCount}
               </Link>
             </div>
-            {}
-            {/* Si el usuario no tiene tweets, muestra un mensaje; de lo contrario, muestra los tweets */}
             {currentTweets.length > 0 ? (
               currentTweets.map((tweet) => (
                 <div key={tweet.id} className="tweet-card">
