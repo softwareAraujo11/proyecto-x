@@ -27,7 +27,11 @@ export const socialReducer = (state = {}, action) => {
         errorMessage: action.payload?.errorMessage,
       };
     case socialType.loadUsers:
-      return { ...state, users: action.payload }; // Nueva acción
+      console.log("Usuarios cargados:", action.payload); // Verifica aquí los usuarios
+      return {
+        ...state,
+        users: [...action.payload],
+      }; // Guarda los usuarios en el estado
 
     default:
       return state;

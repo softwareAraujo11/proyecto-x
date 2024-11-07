@@ -5,12 +5,14 @@ import { TwittsContext } from "./TwittsContext";
 import { useTwitt } from "../hooks/useTwitt";
 
 const initialState = {
+  users: [],
   twitts: [],
   errorMessage: null,
 };
 
 const init = () => {
   return {
+    users: [],
     twitts: [],
     errorMessage: null,
   };

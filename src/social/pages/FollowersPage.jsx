@@ -8,12 +8,14 @@ const FollowersPage = () => {
   } = useContext(TwittsContext);
 
   useEffect(() => {
-    loadUsers(); // Cargar todos los usuarios al montar el componente
-  }, [loadUsers]);
-  console.log(users);
+    console.log("Cargando usuarios...");
+
+    loadUsers(); // Esto debería cargar los usuarios al montar el componente
+  }, [loadUsers]); // Asegúrate de que loadUsers está siendo pasado correctamente
+  console.log("Usuarios desde el estado:", users); // Verifica que 'users' está llegando correctamente
 
   return (
-    <div className="FollowersPage">
+    <div className="Followersage">
       <h2>Usuarios registrados</h2>
       {users && users.length > 0 ? (
         users.map((user) => (
