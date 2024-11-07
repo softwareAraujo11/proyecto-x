@@ -28,21 +28,23 @@ export const CreateAccount = ({ setUsers }) => {
   const onRegister = async (event) => {
     event.preventDefault(); // Previene el comportamiento predeterminado del formulario.
 
-    // Intenta registrar al usuario y guarda el resultado en isRegistered.
+    // Verifica que la contraseña tenga al menos 8 caracteres y una mayúscula
+    const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "La contraseña debe tener al menos 8 caracteres y una letra mayúscula."
+      );
+      return;
+    }
+
+    // Intenta registrar al usuario y guarda el resultado en isValidLogin
     const isValidLogin = await signUpUser(email, password, fullName);
 
     if (isValidLogin) {
-      // Obtiene los usuarios existentes del localStorage o inicializa un array vacío.
       const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-      // Agrega el nuevo usuario al array de usuarios existentes.
       existingUsers.push({ UserName, fullName, email });
-      // Guarda la lista actualizada de usuarios en el localStorage.
       localStorage.setItem("users", JSON.stringify(existingUsers));
-
-      // Guarda el nombre de usuario en localStorage.
       localStorage.setItem("username", UserName);
-
-      // Actualiza el estado de usuarios en el componente padre.
       setUsers(existingUsers);
       navigate("/feed", { replace: true });
     }

@@ -60,16 +60,23 @@ export const useTwitt = (loggedUser, dispatch) => {
   };
 
   const loadUsers = async () => {
-    const collectionRef = collection(FirebaseDB, "users");
-    const fbDocs = await getDocs(collectionRef);
+    try {
+      const collectionRef = collection(FirebaseDB, "users");
+      const fbDocs = await getDocs(collectionRef);
+      const users = [];
+      fbDocs.forEach((doc) => {
+        users.push({ id: doc.id, ...doc.data() });
+      });
+      console.log("Usuarios antes de dispatch:", users); // Asegúrate de que se están cargando los usuarios
 
-    const users = [];
-    fbDocs.forEach((doc) => {
-      users.push({ id: doc.id, ...doc.data() });
-    });
-
-    dispatch({ type: socialType.loadUsers, payload: users });
+      const action = {
+        type: socialType.loadUsers,
+        payload: users,
+      };
+      dispatch(action);
+    } catch (error) {
+      console.error("Error cargando usuarios:", error);
+    }
   };
-
   return { saveTwit, loadTwitts, loadUserTwitts, loadUsers };
 };

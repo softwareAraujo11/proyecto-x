@@ -1,31 +1,39 @@
-// TweetPage.jsx
-import { useContext } from "react";
-
+import { useContext, useState } from "react";
 import { TwittsContext } from "../contexts/TwittsContext";
 import { useForm } from "../../hooks/useForm";
 import { AuthContext } from "../../auth/contexts/AuthContext";
-import "../../Styles/TweetPage.css"; // Importa los estilos específicos de la página de tweet.
-import { useNavigate } from "react-router-dom"; // Usa useNavigate en lugar de Navigate
+import "../../Styles/TweetPage.css";
+import { useNavigate } from "react-router-dom";
 
 const newEmptyTwitt = {
   userr: "",
   twitt: "",
-  date: new Date().toLocaleDateString(), // Agrega la fecha actual
+  date: new Date().toLocaleDateString(),
 };
 
 export const TweetPage = () => {
   const navigate = useNavigate();
-
   const {
     authState: { user, logged },
     logOutUser,
   } = useContext(AuthContext);
   const userr = user.displayName;
-
   const { saveTwit } = useContext(TwittsContext);
   const { name, twitt, date, onInputChange } = useForm(newEmptyTwitt);
+
+  // Estado para manejar el mensaje de error y el conteo de caracteres
+  const [errorMessage, setErrorMessage] = useState("");
+  const maxCharacters = 280;
+
   const onCreateTweet = async (e) => {
     e.preventDefault();
+
+    if (twitt.length > maxCharacters) {
+      setErrorMessage(
+        `El tweet no puede superar los ${maxCharacters} caracteres.`
+      );
+      return; // No enviamos el tweet si la longitud excede el límite
+    }
 
     const tweet = {
       name: userr,
@@ -36,12 +44,10 @@ export const TweetPage = () => {
     navigate("/feed", { replace: true });
   };
 
-  // Maneja el envío del tweet.
-
   return (
     <div className="TweetPage">
       <div className="container1">
-        <h2 className="heading">Publicar Tweet </h2>
+        <h2 className="heading">Publicar Tweet</h2>
         <textarea
           type="text"
           value={twitt}
@@ -49,12 +55,17 @@ export const TweetPage = () => {
           name="twitt"
           placeholder="¿Qué está pasando?"
           className="textarea"
+          maxLength={maxCharacters}
         />
-        {/* Mensaje de error si existe */}
+        {/* Muestra el contador de caracteres restantes */}
+        <div className="char-count">
+          {twitt.length}/{maxCharacters} caracteres
+        </div>
+        {/* Muestra el mensaje de error si existe */}
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
         <button className="button" onClick={onCreateTweet}>
           Publicar
-        </button>{" "}
-        {/* Botón para enviar el tweet */}
+        </button>
       </div>
     </div>
   );

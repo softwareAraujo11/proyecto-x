@@ -5,12 +5,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCYItZ1s1Rmawzjx9CMcDJjLjpKFmHxyWw",
-  authDomain: "clonn-d0641.firebaseapp.com",
-  projectId: "clonn-d0641",
-  storageBucket: "clonn-d0641.firebasestorage.app",
-  messagingSenderId: "907895508657",
-  appId: "1:907895508657:web:d30f7d68543a4cb4a45c90",
+  apiKey: "AIzaSyAicrKtJ98Z026p3ixlBieyCW-1Z9MWHKw",
+  authDomain: "clon-x-d9c13.firebaseapp.com",
+  projectId: "clon-x-d9c13",
+  storageBucket: "clon-x-d9c13.firebasestorage.app",
+  messagingSenderId: "950812331718",
+  appId: "1:950812331718:web:003a999f1c48815da051c7",
 };
 
 // Initialize Firebase
