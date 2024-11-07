@@ -52,18 +52,16 @@ export const PrincipalPage = () => {
         />{" "}
         {/* Ruta para iniciar sesión */}
         {/* Ruta para la página de feed */}
-        <Route path="/*" element={<PrivateRoute><SocialRoutes /></PrivateRoute>} />
-        {/* Ruta para la página de publicar tweet */}
-        {/* Ruta para la página de perfil */}
         <Route
-          path="/followers"
+          path="/*"
           element={
             <PrivateRoute>
-              {" "}
-              <FollowersPage />
+              <SocialRoutes />
             </PrivateRoute>
           }
-        />{" "}
+        />
+        {/* Ruta para la página de publicar tweet */}
+        {/* Ruta para la página de perfil */}
         {/* Ruta para la página de seguidores */}
         <Route
           path="/following"

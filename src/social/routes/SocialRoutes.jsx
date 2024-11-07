@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { TweetPage } from "../pages/TweetPage";
 import Feed from "../pages/Feed";
 import Profile from "../pages/Profile";
-
+import FollowersPage from "../pages/FollowersPage";
 export const SocialRoutes = () => {
   const [tweets, setTweets] = useState([]); // Estado para almacenar los tweets.
   const [users, setUsers] = useState([]); // Estado para almacenar los usuarios.
@@ -18,7 +18,8 @@ export const SocialRoutes = () => {
           <Route
             path="/profile/:username"
             element={<Profile tweets={tweets} users={users} />}
-          />{" "}
+          />
+          <Route path="/followers" element={<FollowersPage />}></Route>
         </Routes>
       </TwittsProvider>
     </>

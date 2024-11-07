@@ -26,6 +26,8 @@ export const socialReducer = (state = {}, action) => {
         ...state,
         errorMessage: action.payload?.errorMessage,
       };
+    case socialType.loadUsers:
+      return { ...state, users: action.payload }; // Nueva acción
 
     default:
       return state;
