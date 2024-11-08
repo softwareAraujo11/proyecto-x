@@ -1,3 +1,4 @@
+//Profile.jsx
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../Styles/Profile.css";

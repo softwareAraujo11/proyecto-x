@@ -1,3 +1,4 @@
+//socialReducer.js
 import { socialType } from "../types/socialTypes";
 export const socialReducer = (state = {}, action) => {
   switch (action.type) {

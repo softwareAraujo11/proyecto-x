@@ -1,3 +1,4 @@
+//authProviders.js
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,

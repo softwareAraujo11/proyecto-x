@@ -1,3 +1,4 @@
+//useAuth.js
 import {
   authUser,
   registerUser,

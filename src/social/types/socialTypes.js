@@ -1,3 +1,4 @@
+//socialTypes.js
 export const socialType = {
   loadtwitts: "[TWIT] load",
   loadUsers: "[USERS] load",
