@@ -14,6 +14,7 @@ const init = () => {
   return {
     users: [],
     twitts: [],
+
     errorMessage: null,
   };
 };
@@ -22,14 +23,28 @@ export const TwittsProvider = ({ children }) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
-  const { saveTwit, loadTwitts, loadUserTwitts, loadUsers } = useTwitt(
-    user,
-    dispatch
-  );
+  const {
+    saveTwit,
+    loadTwitts,
+    loadUserTwitts,
+    loadUsers,
+    toggleFollowUser,
+    followUser,
+    unfollowUser,
+  } = useTwitt(user, dispatch);
 
   return (
     <TwittsContext.Provider
-      value={{ twittState, saveTwit, loadTwitts, loadUserTwitts, loadUsers }}
+      value={{
+        twittState,
+        saveTwit,
+        loadTwitts,
+        loadUserTwitts,
+        loadUsers,
+        toggleFollowUser,
+        followUser,
+        unfollowUser,
+      }}
     >
       {children}
     </TwittsContext.Provider>

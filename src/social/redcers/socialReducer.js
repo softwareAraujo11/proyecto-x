@@ -27,12 +27,39 @@ export const socialReducer = (state = {}, action) => {
         errorMessage: action.payload?.errorMessage,
       };
     case socialType.loadUsers:
-      console.log("Usuarios cargados:", action.payload); // Verifica aquí los usuarios
       return {
         ...state,
         users: [...action.payload],
       }; // Guarda los usuarios en el estado
-
+    case socialType.followUser:
+      return {
+        ...state,
+        users: state.users.map((user) => {
+          if (user.id === action.payload) {
+            return { ...user, followed: true };
+          }
+          return user;
+        }),
+      };
+    case socialType.unfollowUser:
+      return {
+        ...state,
+        users: state.users.map((user) => {
+          if (user.id === action.payload) {
+            return { ...user, followed: false };
+          }
+          return user;
+        }),
+      };
+    case socialType.updateFollowStatus:
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.id === action.payload.userId
+            ? { ...user, followed: action.payload.isFollowing }
+            : user
+        ),
+      };
     default:
       return state;
   }

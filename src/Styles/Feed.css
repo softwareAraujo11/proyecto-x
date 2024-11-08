@@ -5,7 +5,7 @@
   display: flex; /* Utiliza flexbox para disposición */
   background-color: #f0f2f5; /* Color de fondo claro */
   min-height: 100vh; /* Asegura que ocupe al menos la altura de la pantalla */
-  background-color: #242D34;
+  background-color: #242d34;
 }
 
 /* Estilo para la barra lateral */
@@ -26,6 +26,7 @@
 
 /* Estilo del encabezado de bienvenida */
 #Welcome {
+  margin-top: 40px;
   font-size: 2rem; /* Tamaño de fuente */
   color: #1d9bf0; /* Color de texto azul */
   margin-bottom: 20px; /* Espacio debajo del encabezado */
