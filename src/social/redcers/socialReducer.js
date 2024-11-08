@@ -60,6 +60,11 @@ export const socialReducer = (state = {}, action) => {
             : user
         ),
       };
+    case socialType.loadUserTweetsByName:
+      return {
+        ...state,
+        twitts: [...action.payload], // Actualiza los tweets con el nombre del usuario
+      };
     default:
       return state;
   }

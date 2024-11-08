@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { TwittsContext } from "../contexts/TwittsContext";
-
-const FollowersPage = () => {
+import "../../Styles/FollowersPage.css";
+export const FollowersPage = () => {
   const {
     twittState: { users },
     loadUsers,
@@ -29,7 +29,7 @@ const FollowersPage = () => {
 
   return (
     <div className="followers-page">
-      <h3>A quién seguir</h3>
+      <h3 className="followers-title">A quién seguir</h3>
       {users && users.length > 0 ? (
         users.map((user) => (
           <div key={user.id} className="user-card">
@@ -45,7 +45,7 @@ const FollowersPage = () => {
             <button
               onClick={() => toggleFollow(user.id, user.followed)}
               className={`follow-button ${
-                user.followed ? "Siguiendo" : "Seguir"
+                user.followed ? "following" : "follow"
               }`}
             >
               {user.followed ? "Siguiendo" : "Seguir"}
@@ -58,5 +58,3 @@ const FollowersPage = () => {
     </div>
   );
 };
-
-export default FollowersPage;

@@ -31,6 +31,7 @@ export const TwittsProvider = ({ children }) => {
     toggleFollowUser,
     followUser,
     unfollowUser,
+    loadTwittsByName,
   } = useTwitt(user, dispatch);
 
   return (
@@ -44,6 +45,7 @@ export const TwittsProvider = ({ children }) => {
         toggleFollowUser,
         followUser,
         unfollowUser,
+        loadTwittsByName,
       }}
     >
       {children}

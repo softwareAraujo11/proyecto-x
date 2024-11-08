@@ -7,7 +7,6 @@ import { TweetPage } from "./social/pages/TweetPage";
 import { Routes, Route, Navigate } from "react-router-dom"; // Importa componentes para manejar el enrutamiento.
 import React, { useState } from "react"; // Importa React y el hook useState para manejar el estado.
 import Profile from "./social/pages/Profile"; // Importa el componente de la página de perfil.
-import FollowersPage from "./social/pages/FollowersPage"; // Importa el componente de la página de seguidores.
 import { FollowingPage } from "./social/pages/FollowingPage"; // Importa el componente de la página de seguidos.
 import { PublicRoute } from "./Router/PublicRoute";
 import { PrivateRoute } from "./Router/PrivateRoute";

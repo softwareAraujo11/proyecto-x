@@ -1,109 +1,81 @@
+/* followersPage.css */
+
 .followers-page {
-  background-color: #1e1e1e;
-  color: #e0e0e0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  padding: 10px;
+  background-color: #f7f9fa; /* Fondo suave */
+  max-width: 600px; /* Limita el ancho para que no se extienda demasiado */
+  margin: 0 auto; /* Centra el contenido */
   font-family: Arial, sans-serif;
 }
 
-h1 {
-  font-size: 28px;
-  color: #ffffff;
-  margin-bottom: 20px;
-  margin-top: 60px;
+.followers-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #1da1f2; /* Azul similar al de X */
 }
 
-.followers-list {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.follower-item {
+.user-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #2c2c2c;
-  padding: 15px;
+  justify-content: space-between;
+  padding: 10px;
   border-radius: 8px;
-  margin-bottom: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.user-card:hover {
+  background-color: #e8f5fd; /* Color de fondo al pasar el mouse */
 }
 
 .profile-picture {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-right: 150px;
-  margin-left: 20px;
-  flex-shrink: 0; /* Mantiene la imagen dentro del contenedor */
+  object-fit: cover;
+  margin-right: 10px;
 }
 
-.follower-name {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
-  max-width: 150px; /* Ancho máximo para evitar desbordes */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.user-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.display-name {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333;
 }
 
 .username {
-  color: #657786;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 150px; /* Controla el ancho máximo */
+  font-size: 0.8rem;
+  color: #666;
 }
 
 .follow-button {
-  background-color: #3a9ad9;
+  padding: 6px 12px;
+  background-color: #1da1f2;
+  color: white;
   border: none;
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-  flex-shrink: 0;
-  margin-left: auto;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.follow-button.following {
+  background-color: #d1e8ff; /* Color más claro cuando ya se está siguiendo */
+  color: #1da1f2;
 }
 
 .follow-button:hover {
-  background-color: #3181b7;
+  background-color: #1985c5; /* Cambio de color al pasar el mouse */
 }
 
-.pagination {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-.page-button {
-  background-color: #2c2c2c;
-  border: none;
-  color: #e0e0e0;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-}
-
-.page-button.active {
-  background-color: #3a9ad9;
-  color: #ffffff;
-}
-
-.page-button:hover {
-  background-color: #3f3f3f;
+.follow-button:active {
+  transform: scale(0.98); /* Efecto al presionar el botón */
 }

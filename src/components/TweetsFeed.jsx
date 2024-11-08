@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import { TwittsContext } from "../social/contexts/TwittsContext";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // Importa Link para la navegación
 import "../Styles/TweetsFeed.css";
+import { TwittsContext } from "../social/contexts/TwittsContext";
 
 export const TweetsFeed = () => {
   const {
@@ -36,7 +37,10 @@ export const TweetsFeed = () => {
         {currentTweets.length > 0 ? (
           currentTweets.map((tweet) => (
             <div key={tweet.id} className="tweet-card">
-              <h5 className="card-title">{tweet.name}</h5>
+              <h5 className="card-title">
+                {/* Link al perfil del usuario */}
+                <Link to={`/profileUsers/${tweet.name}`}>{tweet.name}</Link>
+              </h5>
               <div className="tweet-content">{tweet.twitt}</div>
               <p className="card-text">Fecha: {tweet.date}</p>
             </div>
