@@ -4,6 +4,8 @@ import {
   getDocs,
   setDoc,
   deleteDoc,
+  query, // Importa query
+  where, // Importa where
 } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import { socialType } from "../types/socialTypes";
@@ -149,6 +151,36 @@ export const useTwitt = (loggedUser, dispatch) => {
       payload: { userId, isFollowing: followingList.includes(userId) },
     });
   };
+  const loadTwittsByName = async (name) => {
+    try {
+      const collectionRef = collection(FirebaseDB, "posts");
+      const q = query(collectionRef, where("name", "==", name)); // Filtrando por 'name'
+
+      const fbDocs = await getDocs(q);
+
+      const tweets = [];
+      fbDocs.forEach((doc) => {
+        console.log("Tweet encontrado:", doc.data()); // Muestra los datos de cada tweet
+        tweets.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+
+      if (tweets.length === 0) {
+        console.log("No se encontraron tweets para este nombre.");
+      }
+
+      const action = {
+        type: socialType.loadTwitts,
+        payload: tweets,
+      };
+      dispatch(action);
+    } catch (error) {
+      console.error("Error cargando tweets por nombre:", error);
+    }
+  };
+
   return {
     saveTwit,
     loadTwitts,
@@ -157,5 +189,6 @@ export const useTwitt = (loggedUser, dispatch) => {
     followUser,
     unfollowUser,
     toggleFollowUser,
+    loadTwittsByName,
   };
 };

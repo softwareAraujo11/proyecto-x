@@ -1,20 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../../Styles/Profile.css";
-import imgProfile from "../../assets/fotoPerfil.jpg";
+import imgProfile from "../../assets/fotoPerfil.jpg"; // Asegúrate de tener la imagen de perfil
 import { CommonHeader } from "../../components/CommonHeader";
 import SidebarMenu from "../../components/SidebarMenu";
 import { TwittsContext } from "../contexts/TwittsContext";
 
-const Profile = () => {
+export const ProfileUsers = () => {
   const {
-    twittState: { twitts, errorMessage },
-    loadUserTwitts,
+    twittState: { twitts },
+    loadTwittsByName,
   } = useContext(TwittsContext);
 
+  const { name } = useParams(); // Obtener el nombre del parámetro URL
+  const [username, setUsername] = useState(name);
+
   useEffect(() => {
-    loadUserTwitts(); // Llama a loadUserTwitts para obtener solo los tweets del usuario
-  }, [loadUserTwitts]);
+    setUsername(name); // Actualiza el nombre del usuario cuando cambia la URL
+    loadTwittsByName(name); // Cargar los tweets del usuario por nombre
+  }, [name, loadTwittsByName]);
+
+  const followersCount = 0;
+  const followingCount = 0;
 
   const [currentPage, setCurrentPage] = useState(1);
   const tweetsPerPage = 10;
@@ -23,16 +30,6 @@ const Profile = () => {
   const currentTweets = Array.isArray(twitts)
     ? twitts.slice(startIndex, endIndex)
     : [];
-
-  const { username: paramUsername } = useParams();
-  const [username, setUsername] = useState(paramUsername);
-
-  useEffect(() => {
-    setUsername(paramUsername);
-  }, [paramUsername]);
-
-  const followersCount = 0;
-  const followingCount = 0;
 
   return (
     <div className="Profile">
@@ -46,7 +43,7 @@ const Profile = () => {
             <div className="profile-header">
               <img
                 src={imgProfile}
-                alt="fotoPerfil"
+                alt="Foto de perfil"
                 className="profile-picture"
               />
               <h2 className="username">{username}</h2>
@@ -76,5 +73,3 @@ const Profile = () => {
     </div>
   );
 };
-
-export default Profile;
