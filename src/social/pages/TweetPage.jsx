@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const newEmptyTwitt = {
   userr: "",
   twitt: "",
-  date: new Date().toLocaleDateString(),
+  date: "",
 };
 
 export const TweetPage = () => {
@@ -25,6 +25,13 @@ export const TweetPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const maxCharacters = 280;
 
+  // Función para obtener la fecha y hora del sistema sin los milisegundos
+  const getCurrentDateTime = () => {
+    const date = new Date();
+    const formattedDate = date.toISOString().split(".")[0] + "Z"; // Elimina los milisegundos
+    return formattedDate;
+  };
+
   const onCreateTweet = async (e) => {
     e.preventDefault();
 
@@ -38,8 +45,9 @@ export const TweetPage = () => {
     const tweet = {
       name: userr,
       twitt,
-      date,
+      date: getCurrentDateTime(), // Usamos la fecha y hora del sistema
     };
+
     await saveTwit(tweet);
     navigate("/feed", { replace: true });
   };
