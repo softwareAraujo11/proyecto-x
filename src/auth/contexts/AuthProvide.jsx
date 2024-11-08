@@ -24,12 +24,19 @@ const init = () => {
 export const AuthProvider = ({ children }) => {
   const [authState, dispach] = useReducer(authReducers, initialState, init);
 
-  const { logInUser, signUpUser, logOutUser, logInWithGoogle } =
+  const { logInUser, signUpUser, logOutUser, logInWithGoogle, loadFollowers } =
     useAuth(dispach);
 
   return (
     <AuthContext.Provider
-      value={{ authState, logInWithGoogle, signUpUser, logInUser, logOutUser }}
+      value={{
+        authState,
+        logInWithGoogle,
+        signUpUser,
+        logInUser,
+        logOutUser,
+        loadFollowers,
+      }}
     >
       {children}
     </AuthContext.Provider>

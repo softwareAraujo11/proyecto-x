@@ -1,28 +1,54 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { TwittsContext } from "../contexts/TwittsContext";
 
 const FollowersPage = () => {
   const {
     twittState: { users },
     loadUsers,
+    followUser,
+    unfollowUser,
   } = useContext(TwittsContext);
 
+  // Cargar usuarios al montar el componente
   useEffect(() => {
-    console.log("Cargando usuarios...");
+    loadUsers();
+  }, [loadUsers]);
 
-    loadUsers(); // Esto debería cargar los usuarios al montar el componente
-  }, [loadUsers]); // Asegúrate de que loadUsers está siendo pasado correctamente
-  console.log("Usuarios desde el estado:", users); // Verifica que 'users' está llegando correctamente
+  // Cambiar el estado de seguimiento de un usuario específico
+  const toggleFollow = async (userId, isFollowing) => {
+    try {
+      if (isFollowing) {
+        await unfollowUser(userId);
+      } else {
+        await followUser(userId);
+      }
+    } catch (error) {
+      console.error("Error al cambiar el estado de seguimiento:", error);
+    }
+  };
 
   return (
-    <div className="Followersage">
-      <h2>Usuarios registrados</h2>
+    <div className="followers-page">
+      <h3>A quién seguir</h3>
       {users && users.length > 0 ? (
         users.map((user) => (
           <div key={user.id} className="user-card">
-            <p>{user.displayName}</p>
-            <button>
-              {/* Aquí puedes añadir lógica de seguir/dejar de seguir */}
+            <img
+              src={user.profilePicture || "https://via.placeholder.com/40"}
+              alt={`${user.displayName} profile`}
+              className="profile-picture"
+            />
+            <div className="user-info">
+              <p className="display-name">{user.displayName}</p>
+              <p className="username">@{user.displayName || "username"}</p>
+            </div>
+            <button
+              onClick={() => toggleFollow(user.id, user.followed)}
+              className={`follow-button ${
+                user.followed ? "Siguiendo" : "Seguir"
+              }`}
+            >
+              {user.followed ? "Siguiendo" : "Seguir"}
             </button>
           </div>
         ))

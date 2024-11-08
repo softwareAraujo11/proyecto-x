@@ -1,4 +1,10 @@
-import { collection, doc, getDocs, setDoc } from "firebase/firestore/lite";
+import {
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import { socialType } from "../types/socialTypes";
 
@@ -67,7 +73,6 @@ export const useTwitt = (loggedUser, dispatch) => {
       fbDocs.forEach((doc) => {
         users.push({ id: doc.id, ...doc.data() });
       });
-      console.log("Usuarios antes de dispatch:", users); // Asegúrate de que se están cargando los usuarios
 
       const action = {
         type: socialType.loadUsers,
@@ -78,5 +83,79 @@ export const useTwitt = (loggedUser, dispatch) => {
       console.error("Error cargando usuarios:", error);
     }
   };
-  return { saveTwit, loadTwitts, loadUserTwitts, loadUsers };
+  const followUser = async (userId) => {
+    try {
+      const followDoc = doc(
+        FirebaseDB,
+        "follows",
+        `${loggedUser.uid}_${userId}`
+      );
+      await setDoc(followDoc, {
+        followerId: loggedUser.uid,
+        followedId: userId,
+      });
+
+      dispatch({
+        type: socialType.updateFollowStatus,
+        payload: { userId, isFollowing: true },
+      });
+    } catch (error) {
+      console.error("Error al seguir al usuario:", error);
+    }
+  };
+
+  const unfollowUser = async (userId) => {
+    try {
+      const followDoc = doc(
+        FirebaseDB,
+        "follows",
+        `${loggedUser.uid}_${userId}`
+      );
+      await deleteDoc(followDoc);
+
+      dispatch({
+        type: socialType.updateFollowStatus,
+        payload: { userId, isFollowing: false },
+      });
+    } catch (error) {
+      console.error("Error al dejar de seguir al usuario:", error);
+    }
+  };
+
+  const toggleFollowUser = async (userId) => {
+    const userDocRef = doc(FirebaseDB, "users", loggedUser.uid);
+    const userDoc = await getDocs(userDocRef);
+
+    let followingList = [];
+    if (userDoc.exists()) {
+      followingList = userDoc.data().following || [];
+    }
+
+    // Verifica si ya está siguiendo al usuario
+    if (followingList.includes(userId)) {
+      // Si ya lo sigue, elimina de la lista de seguidos
+      followingList = followingList.filter((id) => id !== userId);
+    } else {
+      // Si no lo sigue, agrégalo a la lista
+      followingList.push(userId);
+    }
+
+    // Actualiza la lista en Firestore
+    await setDoc(userDocRef, { following: followingList }, { merge: true });
+
+    // Actualiza el estado
+    dispatch({
+      type: socialType.updateFollowStatus,
+      payload: { userId, isFollowing: followingList.includes(userId) },
+    });
+  };
+  return {
+    saveTwit,
+    loadTwitts,
+    loadUserTwitts,
+    loadUsers,
+    followUser,
+    unfollowUser,
+    toggleFollowUser,
+  };
 };
