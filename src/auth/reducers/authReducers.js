@@ -1,3 +1,5 @@
+//authReducers.js
+
 import { authTypes } from "../types/authTypes";
 
 export const authReducers = (state = {}, action = {}) => {

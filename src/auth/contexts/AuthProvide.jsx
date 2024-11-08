@@ -1,3 +1,4 @@
+//AuthProvide.jsx
 import { useReducer } from "react";
 import { AuthContext } from "./AuthContext";
 import { useAuth } from "../hooks/useAuth";

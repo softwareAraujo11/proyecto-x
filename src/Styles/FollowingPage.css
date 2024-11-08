@@ -1,66 +1,118 @@
-/* FollowingPage.css */
+/* Contenedor principal de la página */
 .following-page {
-  background-color: #1e1e1e;
-  color: #e0e0e0;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  background-color: #f9f9f9;
+  padding: 60px;
   font-family: Arial, sans-serif;
+  height: 100vh;
 }
 
-h1 {
-  font-size: 28px;
-  color: #ffffff;
+/* Título de la página */
+.following-page h1 {
+  font-size: 24px;
+  color: #333;
   margin-bottom: 20px;
 }
 
-.following-list {
+/* Lista de seguidores */
+.followers-list {
   list-style: none;
   padding: 0;
   width: 100%;
   max-width: 600px;
+  margin: 0 auto;
 }
 
-.following-item {
-  background-color: #2c2c2c;
-  padding: 15px;
+/* Elemento individual de la lista */
+.follower-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 15px;
   margin-bottom: 10px;
   border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
-.following-link {
-  color: #ffffff;
+.follower-item:hover {
+  transform: scale(1.02);
+}
+
+/* Imagen de perfil del usuario */
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* Información del usuario */
+.follower-name {
+  font-weight: bold;
+  color: #1da1f2;
   text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
 }
 
+.follower-name:hover {
+  text-decoration: underline;
+}
+
+.username {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Botón de seguir/dejar de seguir */
+.follow-button {
+  background-color: #1da1f2;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.follow-button.following {
+  background-color: #e0245e;
+}
+
+.follow-button:hover {
+  background-color: #0d8bce;
+}
+
+.follow-button.following:hover {
+  background-color: #c51f4c;
+}
+
+/* Paginación */
 .pagination {
-  margin-top: 20px;
   display: flex;
-  justify-content: center;
   gap: 8px;
+  margin-top: 20px;
 }
 
 .page-button {
-  background-color: #2c2c2c;
+  background-color: #e6ecf0;
   border: none;
-  color: #e0e0e0;
-  padding: 8px 12px;
-  border-radius: 4px;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .page-button.active {
-  background-color: #3a9ad9;
-  color: #ffffff;
+  background-color: #1da1f2;
+  color: #fff;
 }
 
 .page-button:hover {
-  background-color: #3f3f3f;
+  background-color: #b0b7bd;
 }

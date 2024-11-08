@@ -1,6 +1,8 @@
+// FollowersPage.jsx
 import React, { useContext, useEffect } from "react";
 import { TwittsContext } from "../contexts/TwittsContext";
 import "../../Styles/FollowersPage.css";
+
 export const FollowersPage = () => {
   const {
     twittState: { users },
@@ -9,12 +11,10 @@ export const FollowersPage = () => {
     unfollowUser,
   } = useContext(TwittsContext);
 
-  // Cargar usuarios al montar el componente
   useEffect(() => {
     loadUsers();
   }, [loadUsers]);
 
-  // Cambiar el estado de seguimiento de un usuario específico
   const toggleFollow = async (userId, isFollowing) => {
     try {
       if (isFollowing) {
@@ -22,6 +22,7 @@ export const FollowersPage = () => {
       } else {
         await followUser(userId);
       }
+      loadUsers(); // Recargar los usuarios para reflejar cambios en la interfaz
     } catch (error) {
       console.error("Error al cambiar el estado de seguimiento:", error);
     }
@@ -44,9 +45,7 @@ export const FollowersPage = () => {
             </div>
             <button
               onClick={() => toggleFollow(user.id, user.followed)}
-              className={`follow-button ${
-                user.followed ? "following" : "follow"
-              }`}
+              className={`follow-button ${user.followed ? "following" : "follow"}`}
             >
               {user.followed ? "Siguiendo" : "Seguir"}
             </button>

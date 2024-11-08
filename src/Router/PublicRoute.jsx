@@ -1,3 +1,4 @@
+//PublicRoute.jsx
 import { useContext } from "react";
 import { AuthContext } from "../auth/contexts/AuthContext";
 import { Navigate } from "react-router-dom";

@@ -1,3 +1,4 @@
+//TweetPage.jsx
 import { useContext, useState } from "react";
 import { TwittsContext } from "../contexts/TwittsContext";
 import { useForm } from "../../hooks/useForm";
@@ -25,10 +26,17 @@ export const TweetPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const maxCharacters = 280;
 
-  // Función para obtener la fecha y hora del sistema sin los milisegundos
+  // Función para obtener la fecha y hora en formato legible
   const getCurrentDateTime = () => {
     const date = new Date();
-    const formattedDate = date.toISOString().split(".")[0] + "Z"; // Elimina los milisegundos
+    const formattedDate = date.toLocaleString("es-ES", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
     return formattedDate;
   };
 
@@ -45,7 +53,7 @@ export const TweetPage = () => {
     const tweet = {
       name: userr,
       twitt,
-      date: getCurrentDateTime(), // Usamos la fecha y hora del sistema
+      date: getCurrentDateTime(), // Usamos la fecha y hora en formato legible
     };
 
     await saveTwit(tweet);
