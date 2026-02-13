@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { PrincipalPage } from "./PrincipalPage";
-import { AuthProvider } from "./auth/contexts/AuthProvide";
+import { AuthProvider } from "./auth/contexts/AuthProvider";
 
 // Renderiza la aplicación dentro del elemento con id "root" en el HTML.
 createRoot(document.getElementById("root")).render(

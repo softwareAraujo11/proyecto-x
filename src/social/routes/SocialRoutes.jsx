@@ -23,6 +23,7 @@ export const SocialRoutes = () => {
           />
           <Route path="/followers" element={<FollowersPage />}></Route>
           <Route path="/profileUsers/:name" element={<ProfileUsers />} />
+          <Route path="/*" element={<Navigate to="/feed" />} />
         </Routes>
       </TwittsProvider>
     </>

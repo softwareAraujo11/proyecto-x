@@ -10,23 +10,29 @@ const initialState = {
 };
 
 const init = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  let user = null;
+  try {
+    user = JSON.parse(localStorage.getItem("user"));
+  } catch (error) {
+    console.error("Error parsing user from localStorage:", error);
+    localStorage.removeItem("user");
+  }
 
   const isLogged = !user ? false : true;
 
   const state = {
     logged: isLogged,
-    user,
+    user: user || {},
   };
 
   return state;
 };
 
 export const AuthProvider = ({ children }) => {
-  const [authState, dispach] = useReducer(authReducers, initialState, init);
+  const [authState, dispatch] = useReducer(authReducers, initialState, init);
 
   const { logInUser, signUpUser, logOutUser, logInWithGoogle, loadFollowers } =
-    useAuth(dispach);
+    useAuth(dispatch);
 
   return (
     <AuthContext.Provider
